@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar will be loaded by auth-nav.js -->
+    <nav class="navbar" id="mainNavbar"></nav>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="user-profile-card">
+                <div class="profile-avatar" id="userAvatar">
+                    <!-- Dynamic content -->
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 id="userName">Loading...</h3>
+                <p id="userEmail">user@example.com</p>
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="coursesEnrolled">0</span>
+                        <span class="stat-label">Courses</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="completedCourses">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="activeStreak">0</span>
+                        <span class="stat-label">Streak</span>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">
+                    <i class="fas fa-home"></i> <span>Dashboard</span>
+                </a>
+                <a href="explore.html" class="menu-item">
+                    <i class="fas fa-book"></i> <span>My Courses</span>
+                </a>
+                <a href="mentor.html" class="menu-item">
+                    <i class="fas fa-chalkboard-teacher"></i> <span>My Mentors</span>
+                </a>
+                <a href="#" class="menu-item" id="progressBtn">
+                    <i class="fas fa-chart-line"></i> <span>Progress</span>
+                </a>
+                <a href="#" class="menu-item" id="profileBtn">
+                    <i class="fas fa-user"></i> <span>Profile</span>
+                </a>
+                <a href="#" class="menu-item" id="messagesBtn">
+                    <i class="fas fa-envelope"></i> <span>Messages</span>
+                    <span class="badge" id="messageBadge">0</span>
+                </a>
+                <a href="#" class="menu-item" id="notificationsBtn">
+                    <i class="fas fa-bell"></i> <span>Notifications</span>
+                    <span class="badge" id="notificationBadge">0</span>
+                </a>
+                <a href="#" class="menu-item logout" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="storage-info">
+                    <div class="storage-label">
+                        <i class="fas fa-hdd"></i>
+                        <span>Storage</span>
+                    </div>
+                    <span class="storage-percent" id="storagePercent">0%</span>
+                </div>
+                <div class="storage-bar">
+                    <div class="storage-progress" id="storageProgress" style="width: 0%"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Welcome Header -->
+            <header class="dashboard-header">
+                <div class="header-content">
+                    <h1>Welcome back, <span id="welcomeName" class="gradient-text">User</span>! 👋</h1>
+                    <p class="dashboard-subtitle">Track your learning progress and continue your journey</p>
+                </div>
+                <div class="header-actions">
+                    <div class="date-display">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span id="currentDate">Loading date...</span>
+                    </div>
+                    <button class="btn-cta" id="resumeLearning">
+                        <i class="fas fa-play-circle"></i>
+                        Resume Learning
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card card-hover">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #6780ad, #a2aabc)">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="statCourses">0</h3>
+                        <p class="stat-label">Courses Enrolled</p>
+                        <span class="stat-trend" id="coursesTrend"><i class="fas fa-arrow-up"></i> Loading...</span>
+                    </div>
+                </div>
+
+                <div class="stat-card card-hover">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #425480, #7395b8)">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="statCompleted">0</h3>
+                        <p class="stat-label">Completed</p>
+                        <span class="stat-trend success" id="completedTrend"><i class="fas fa-arrow-up"></i> Loading...</span>
+                    </div>
+                </div>
+
+                <div class="stat-card card-hover">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #364874, #596f9b)">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="statHours">0</h3>
+                        <p class="stat-label">Hours Spent</p>
+                        <span class="stat-trend" id="hoursTrend"><i class="fas fa-clock"></i> Loading...</span>
+                    </div>
+                </div>
+
+                <div class="stat-card card-hover">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #0d1022, #131a29)">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-number" id="statStreak">0</h3>
+                        <p class="stat-label">Day Streak</p>
+                        <span class="stat-trend warning" id="streakTrend"><i class="fas fa-fire"></i> Keep it up!</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Courses & Mentors -->
+            <section class="content-grid">
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-play-circle" style="color: #6780ad"></i> Continue Learning</h3>
+                        <a href="explore.html" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="course-list" id="recentCourses">
+                        <!-- Dynamic content will load here -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading your courses...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chalkboard-teacher" style="color: #425480"></i> Your Mentors</h3>
+                        <a href="mentor.html" class="view-all">Find More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="mentor-list" id="mentorList">
+                        <!-- Dynamic content will load here -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading your mentors...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recommendations & Activity -->
+            <section class="content-grid">
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-star" style="color: #7395b8"></i> Recommended For You</h3>
+                    </div>
+                    <div class="recommendations" id="recommendationsList">
+                        <!-- Dynamic content will load here -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading recommendations...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-history" style="color: #596f9b"></i> Recent Activity</h3>
+                        <a href="#" class="view-all" id="viewAllActivity">See All</a>
+                    </div>
+                    <div class="activity-list" id="activityList">
+                        <!-- Dynamic content will load here -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading your activity...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions & Calendar -->
+            <section class="content-grid">
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-bolt" style="color: #6780ad"></i> Quick Actions</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <a href="explore.html" class="action-btn">
+                            <i class="fas fa-search"></i>
+                            <span>Find Courses</span>
+                            <small>Browse new courses</small>
+                        </a>
+                        <a href="mentor.html" class="action-btn">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Connect with Mentor</span>
+                            <small>Get guidance</small>
+                        </a>
+                        <a href="#" class="action-btn" id="profileActionBtn">
+                            <i class="fas fa-cog"></i>
+                            <span>Update Profile</span>
+                            <small>Edit settings</small>
+                        </a>
+                        <a href="#" class="action-btn" id="certificateBtn">
+                            <i class="fas fa-award"></i>
+                            <span>View Certificates</span>
+                            <small>Your achievements</small>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="content-card card-hover">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar" style="color: #425480"></i> Upcoming Sessions</h3>
+                    </div>
+                    <div class="calendar-events" id="calendarEvents">
+                        <!-- Dynamic content will load here -->
+                        <div class="loading-state">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading upcoming sessions...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-top-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Firebase & Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="auth-nav.js"></script>
+    <!-- Remove dashboard.js and replace with: -->
+    <script src="dashboard-firebase.js"></script>
+    
+    <script>
+        // Firebase configuration (should match auth-nav.js)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDa5n4kouD8j8SkZjFKbOaLIR1P75qt_0Q",
+            authDomain: "skill-x-e9103.firebaseapp.com",
+            projectId: "skill-x-e9103",
+            storageBucket: "skill-x-e9103.firebasestorage.app",
+            messagingSenderId: "168346915694",
+            appId: "1:168346915694:web:04d02b703f6af77cd0277f",
+            databaseURL: "https://skill-x-e9103-default-rtdb.firebaseio.com/"
+        };
+
+        // Smooth scroll effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Firebase
+            if (!firebase.apps.length) {
+                firebase.initializeApp(firebaseConfig);
+            }
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Card hover effects
+            document.querySelectorAll('.card-hover').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            console.log('🔥 Dashboard ready');
+        });
+    </script>
+</body>
+</html>

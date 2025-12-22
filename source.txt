@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill X</title>
+  <link rel="stylesheet" href="sample2.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <section class="gbu">
+    <section id="a">
+    <!-- Header Banner -->
+    <div class="header">
+      <p class="header-content">
+        <b>AI is changing the game</b> | Get the skills with Skill X.
+      </p>
+    </div>
+
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navleft">
+        <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+        <ul class="navfont">
+          <li><a href="sample2.html">Explore</a></li>
+          <li><a href="mentor.html">Find Mentors</a></li>
+          <li><a href="#become">Become a Mentor</a></li>
+          <li><a href="price.html">Plans & Pricing</a></li>
+        </ul>
+      </div>
+
+
+      <div class="navright">
+        <input type="text" class="searchbar" placeholder="Search for anything">
+        <a href="#" class="login">🔐 Login</a>
+        <button class="signup">Sign Up</button>
+      </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <div class="head">
+      <img src="bgimg.png" class="bg">
+      <div class="bgcontent">
+        <h1>Exchange skills and <br> Empower each other.</h1>
+        <h2>Find mentors, share knowledge, and grow together on Skill X</h2>
+        <button class="join">Join Now</button>
+      </div>
+    </div>
+  </section>
+  </section>
+
+
+  <section class="detail">
+    <section class="hero">
+            <div class="hero-content">
+                <h1>Skill X Made Easy</h1>
+                <p>Unlock your creative potential with thousands of courses taught by industry professionals. From beginner to pro, we have the perfect learning path for you.</p>
+                <a href="#" class="btn">Start Learning Today</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Creative Learning">
+            </div>
+        </section>
+        
+        <section class="features">
+            <h2>Why Choose Skill X?</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Thousands of creative classes. Beginner to pro.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Taught by creative pros and industry icons.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Learning Paths to help you achieve your goals.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Certificates to celebrate your accomplishments.</span>
+                </li>
+            </ul>
+            
+            <div class="divider"></div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">MEMBERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">CLASSES</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">TEACHERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">
+                        Student's RATING
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  </section>
+</body>
+</html>
+html {
+  scroll-behavior: smooth;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+/* Header Bar */
+.header {
+  background-color: #2b3e69;
+  color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.header-content {
+  font-size: 18px;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+.navleft, .navright {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+
+.xyz {
+  width: 90px;
+  height: 40px;
+}
+
+
+.navfont {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+        .navfont li a 
+            {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px;
+            border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+
+.navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+.navfont li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: blue;
+            bottom: -4px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .navfont li a:hover::after {
+            width: 100%;
+        }
+        
+        .navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+
+
+.searchbar {
+  width: 260px;
+  height: 32px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+}
+
+
+.login {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+
+.login:hover {
+  color: blue;
+  background: #eaf1f6;
+}
+
+
+.signup {
+  background: #14a800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.signup:hover {
+  background: #128f00;
+  transform: translateY(-2px);
+}
+
+
+/* Hero Section */
+.head {
+  position: relative;
+  width: 100%;
+  max-width: 1500px;
+  height: 560px;
+  margin: 30px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
+}
+
+
+.bgcontent {
+  position: absolute;
+  bottom: 50%;
+  left: 8%;
+  color: white;
+  font-family: sans-serif;
+  max-width: 600px;
+}
+
+
+
+.bgcontent h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+
+.bgcontent h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+
+.join {
+  background: #c4c2de;
+  color: black;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+
+.join:hover {
+  background: #dfdeec;
+  transform: translateY(-2px);
+}
+
+
+/* Explore Section */
+#explore {
+  background: #f8f9fb;
+  padding: 60px 40px;
+}
+
+
+.container header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.subtitle {
+  color: #555;
+  margin-top: 10px;
+}
+
+
+/* Grid Styles (same as yours) */
+.nav-container, .explore-grid {
+  display: grid;
+  gap: 30px;
+}
+
+
+.nav-container {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+
+.explore-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+
+/* Reuse your original styles for explore-card and links */
+.explore-card, .nav-section {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+
+.explore-card:hover, .nav-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+
+.detail
+{
+    background-color: #4773b4;
+    color: #c8daf9;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 4rem 0;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            padding-left: 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #ffcc00;
+            color: #333;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #ffd84d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features {
+            background-color: #0d44b0;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+        
+        .features h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 1rem 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li i {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .checked {
+            color: #4cd964;
+        }
+        
+        .unchecked {
+            color: #ffcc00;
+        }
+        
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 2rem 0;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffcc00;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+        
+        .stars {
+            color: #ffcc00;
+            margin-right: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin-bottom: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plan and Pricing</title>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="price.css">
+</head>
+<body>
+    <section id="one">
+            <div class="header">
+        <p class="header-content">
+            <b>AI is changing the game</b> | Get the skills with Skill X.
+        </p>
+        </div>
+
+
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+        <div class="navleft">
+            <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+            <ul class="navfont">
+            <li><a href="sample2.html">Explore</a></li>
+            <li><a href="mentor.html">Find Mentors</a></li>
+            <li><a href="#become">Become a Mentor</a></li>
+            <li><a href="price.html">Plans & Pricing</a></li>
+            </ul>
+        </div>
+
+
+        <div class="navright">
+            <input type="text" class="searchbar" placeholder="Search for anything">
+            <a href="#" class="login">🔐 Login</a>
+            <button class="signup">Sign Up</button>
+        </div>
+        </nav>
+    </section>
+<section id="two">
+    <h2 class="phead">Choose a plan for Success</h2>
+    <p class="psub">Don't want to buy courses one by one? Pick a plan to help you, your team, or your organization achieve outcomes faster.</p>
+    <div class="apple">
+
+
+        <div class="apple11">
+            <div class="a">
+                    <p class="a1">Personal Plan</p>
+                    <p class="a2">For you</p>
+                    <p class="a3">👤Individual</p>
+            </div>
+                <br>
+                <h3 class="a4">Starting at ₹500 per month</h3>
+                <p class="a5">Build for monthly or annualy. Cancel anytime.</p>
+                <button class="a6">Start subscription</button>
+                <br>
+                <br>
+        </div>
+
+
+        <div class="apple12">
+            <div class="a">
+                    <p class="a1">Team Plan</p>
+                    <p class="a2">For your Team</p>
+                    <p class="a3">👥2 to 20 people</p>
+            </div>
+                <br>
+                <h3 class="a4">₹2,000 a month per user</h3>
+                <p class="a5">Build for annualy. Cancel anytime.</p>
+                <button class="a6">Start subscription </button>
+        </div>
+
+
+        <div class="apple13">
+            <div class="a">
+                    <p class="a1">Enterprise Plan</p>
+                    <p class="a2">For your whole organization</p>
+                    <p class="a3">👥More than 20 people</p>
+            </div>
+                <br>
+                <h3 class="b1">Contact sales for Pricing</h3>
+                <button class="a6">Start subscription </button>
+        </div>
+
+
+        <!--<div class="apple12">
+            <h3>🎨 Creative Arts</h3>
+            <p>Graphic Design, Video Editing, Photography, Writing</p>
+        </div>
+
+
+        <div class="apple13">
+            <h3>💼 Business</h3>
+            <p>Marketing, Finance, Leadership, Public Speaking</p>
+        </div>-->
+
+
+        <!-- Add more categories -->
+    </div>
+</section>
+</body>
+</html>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Header Bar */
+.header {
+  background-color: #2b3e69;
+  color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.header-content {
+  font-size: 18px;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+.navleft, .navright {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+
+.xyz {
+  width: 90px;
+  height: 40px;
+}
+
+
+.navfont {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+        .navfont li a 
+            {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px;
+            border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+
+.navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+.navfont li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: blue;
+            bottom: -4px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .navfont li a:hover::after {
+            width: 100%;
+        }
+        
+        .navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+
+
+.searchbar {
+  width: 260px;
+  height: 32px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+}
+
+
+.login {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+
+.login:hover {
+  color: blue;
+  background: #eaf1f6;
+}
+
+
+.signup {
+  background: #14a800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.signup:hover {
+  background: #128f00;
+  transform: translateY(-2px);
+}
+#two
+{
+    padding: 50px 20px;
+    text-align: center;
+}
+
+
+.phead
+{
+    margin-bottom: 30px;
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    text-decoration: none;
+    font-size: 60px;
+    color: #333;
+}
+.psub
+{
+    font-family: sans-serif;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 18px;
+}
+
+
+.apple
+{
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px; 
+    max-width: 1200px; 
+    margin: 10px auto;
+    padding-top: 10px;
+}
+
+
+
+
+.apple11
+{ 
+    border-radius: 10px; 
+    border-top: 6px solid #283ae0;
+    border-bottom:#ddd7d7 2px solid;
+    border-right:#ddd7d7 2px solid;
+    border-left:#ddd7d7 2px solid;
+}
+
+
+.a 
+{
+    /*#eef0f1*/
+    text-align: left;
+    background: #edeff1;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+.a1
+{
+    font-weight:380;
+    font-size: 20px;
+    color: #333;
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.a2
+{
+    font-size: 14px;
+    color: #333;
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.a3
+{
+    font-size: 16px;
+    color: #333;
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+.a4 
+{
+    text-align: left;
+    padding-left: 10px;
+    font-family: sans-serif;
+}
+
+
+.b1 
+{
+    text-align: left;
+    padding-left: 10px;
+    margin-bottom: 40px;
+    font-family: sans-serif;
+}
+
+
+.a5 
+{
+    text-align: left;
+    padding-left: 10px;
+    color: #666262;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+
+.a6
+{
+    background-color:#283ae0;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    width: 250px;
+    height: 50px;
+    font-weight: bold   ;
+}
+
+
+.apple12
+{
+    border-radius: 10px; 
+    border-top: 6px solid #6975db;
+    border-bottom:#ddd7d7 2px solid;
+    border-right:#ddd7d7 2px solid;
+    border-left:#ddd7d7 2px solid;
+}
+
+
+
+.apple13
+{
+    border-radius: 10px; 
+    border-top: 6px solid #1c28b4;
+    border-bottom:#ddd7d7 2px solid;
+    border-right:#ddd7d7 2px solid;
+    border-left:#ddd7d7 2px solid;
+}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - Find Professionals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="mentor.css">
+
+
+</head>
+<body>
+
+
+    <div class="header">
+      <p class="header-content">
+        <b>AI is changing the game</b> | Get the skills with Skill X.
+      </p>
+    </div>
+
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navleft">
+        <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+        <ul class="navfont">
+          <li><a href="sample2.html">Explore</a></li>
+          <li><a href="mentor.html">Find Mentors</a></li>
+          <li><a href="#become">Become a Mentor</a></li>
+          <li><a href="price.html">Plans & Pricing</a></li>
+        </ul>
+      </div>
+
+
+      <div class="navright">
+        <input type="text" class="searchbar" placeholder="Search for anything">
+        <a href="#" class="login">🔐 Login</a>
+        <button class="signup">Sign Up</button>
+      </div>
+    </nav>
+
+
+
+
+    <div class="container">
+        <header>
+            <h1>Find Top Professionals</h1>
+            <p class="subtitle">Click on a category to browse skilled professionals in that field</p>
+        </header>
+        
+        <div class="categories-container">
+            <div class="category-column">
+                <h2>Popular Categories</h2>
+                <ul class="category-list">
+                    <li class="category-item active" data-category="development">
+                        <i class="fas fa-code"></i> Development & IT
+                    </li>
+                    <li class="category-item" data-category="design">
+                        <i class="fas fa-palette"></i> Design & Creative
+                    </li>
+                    <li class="category-item" data-category="ai">
+                        <i class="fas fa-robot"></i> AI Services
+                    </li>
+                    <li class="category-item" data-category="sales">
+                        <i class="fas fa-chart-line"></i> Sales & Marketing
+                    </li>
+                    <li class="category-item" data-category="writing">
+                        <i class="fas fa-pen"></i> Writing & Translation
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="category-column">
+                <h2>Other Categories</h2>
+                <ul class="category-list">
+                    <li class="category-item" data-category="admin">
+                        <i class="fas fa-headset"></i> Admin & Support
+                    </li>
+                    <li class="category-item" data-category="finance">
+                        <i class="fas fa-chart-pie"></i> Finance & Accounting
+                    </li>
+                    <li class="category-item" data-category="legal">
+                        <i class="fas fa-gavel"></i> Legal
+                    </li>
+                    <li class="category-item" data-category="hr">
+                        <i class="fas fa-users"></i> HR & Training
+                    </li>
+                    <li class="category-item" data-category="engineering">
+                        <i class="fas fa-cogs"></i> Engineering & Architecture
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Development & IT Professionals -->
+        <div class="professionals-container active" id="development">
+            <div class="professionals-header">
+                <h2>Development & IT Professionals</h2>
+                <p>Top talent in web and software development</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Sarah Johnson</h3>
+                        <p class="professional-title">Website Developer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$50/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Michael Chen</h3>
+                        <p class="professional-title">AI Engineer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$60/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Data Science</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Alex Rodriguez</h3>
+                        <p class="professional-title">Software Developer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$50/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Microservices</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI Services Professionals -->
+        <div class="professionals-container" id="ai">
+            <div class="professionals-header">
+                <h2>AI Services Professionals</h2>
+                <p>Experts in artificial intelligence and machine learning</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">David Kim</h3>
+                        <p class="professional-title">AI Engineer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">5.0 on avg</span>
+                        </div>
+                        <div class="rate">$75/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Lisa Wang</h3>
+                        <p class="professional-title">ML Researcher</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$85/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Research</span>
+                            <span class="skill-tag">Algorithm Design</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Design & Creative Professionals -->
+        <div class="professionals-container" id="design">
+            <div class="professionals-header">
+                <h2>Design & Creative Professionals</h2>
+                <p>Creative minds for your design projects</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Emma Wilson</h3>
+                        <p class="professional-title">UI/UX Designer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">5.0 on avg</span>
+                        </div>
+                        <div class="rate">$65/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">User Research</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other categories would follow the same pattern -->
+        
+    </div>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryItems = document.querySelectorAll('.category-item');
+            const professionalContainers = document.querySelectorAll('.professionals-container');
+            
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all categories
+                    categoryItems.forEach(cat => cat.classList.remove('active'));
+                    
+                    // Add active class to clicked category
+                    this.classList.add('active');
+                    
+                    // Get the category id
+                    const categoryId = this.getAttribute('data-category');
+                    
+                    // Hide all professional containers
+                    professionalContainers.forEach(container => {
+                        container.classList.remove('active');
+                    });
+                    
+                    // Show the selected professional container
+                    const targetContainer = document.getElementById(categoryId);
+                    if (targetContainer) {
+                        targetContainer.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        html {
+  scroll-behavior: smooth;
+}
+        .header {
+  background-color: #2b3e69;
+  color: white;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.header-content {
+  font-size: 18px;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 40px;
+  flex-wrap: wrap;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+
+.navleft, .navright {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+
+.xyz {
+  width: 90px;
+  height: 40px;
+}
+
+
+.navfont {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+        .navfont li a 
+            {
+            text-decoration: none;
+            color: #333;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px;
+            border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+
+.navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+.navfont li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: blue;
+            bottom: -4px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .navfont li a:hover::after {
+            width: 100%;
+        }
+        
+        .navfont li a:hover {
+            color: blue;
+            text-shadow: 0px 0px 10px rgb(225, 226, 247);
+            background-color: #eaf1f6;
+        }
+
+
+.searchbar {
+  width: 260px;
+  height: 32px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+}
+
+
+.login {
+  text-decoration: none;
+  color: #333;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+
+.login:hover {
+  color: blue;
+  background: #eaf1f6;
+}
+
+
+.signup {
+  background: #14a800;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.signup:hover {
+  background: #128f00;
+  transform: translateY(-2px);
+}
+
+
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2b3e69 0%, #4a6fc5 100%);
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .category-column {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .category-column h2 {
+            background: #2b3e69;
+            color: white;
+            padding: 15px;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .category-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-item:hover {
+            background-color: #f0f5ff;
+        }
+        
+        .category-item.active {
+            background-color: #e1e8ff;
+            border-left: 4px solid #4a6fc5;
+            font-weight: 600;
+        }
+        
+        .category-item i {
+            margin-right: 10px;
+            color: #4a6fc5;
+        }
+        
+        .professionals-container {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-top: 20px;
+        }
+        
+        .professionals-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .professionals-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .professionals-header h2 {
+            color: #2b3e69;
+            font-size: 1.8rem;
+        }
+        
+        .professionals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .professional-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+        
+        .professional-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .professional-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #4a6fc5 0%, #2b3e69 100%);
+            color: white;
+        }
+        
+        .professional-name {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .professional-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .professional-details {
+            padding: 20px;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stars {
+            color: #ffc107;
+            margin-right: 10px;
+        }
+        
+        .rating-text {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .rate {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2b3e69;
+            margin-bottom: 15px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-tag {
+            background: #e1e8ff;
+            color: #2b3e69;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .professional-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #4a6fc5;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3a5bb5;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #4a6fc5;
+            color: #4a6fc5;
+        }
+        
+        .btn-outline:hover {
+            background: #4a6fc5;
+            color: white;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .categories-container {
+                flex-direction: column;
+            }
+            
+            .professionals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+

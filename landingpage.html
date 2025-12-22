@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill X Empower Eachother</title>
+  <link rel="stylesheet" href="landingpage.css">
+  <!-- Add navbar.css -->
+<link rel="stylesheet" href="navbar.css">
+ 
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header Banner -->
+  <div class="header">
+    <p class="header-content">
+      <b>AI is changing the game</b> | Get the skills with Skill X.
+    </p>
+  </div>
+
+ <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navleft">
+    <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+    <ul class="navfont">
+      <li><a href="landingpage.html" class="nav-link">Home</a></li>
+      <li><a href="explore.html" class="nav-link">Explore</a></li>
+      <li><a href="mentor.html" class="nav-link">Find Mentors</a></li>
+      <li><a href="#opportunities" class="nav-link">Opportunities</a></li>
+      <li><a href="price.html" class="nav-link">Plans & Pricing</a></li>
+    </ul>
+  </div>
+
+  <div class="navright">
+    <input type="text" class="searchbar" placeholder="Search for anything">
+    
+    <!-- Guest buttons (shown when not logged in) -->
+    <div class="guest-buttons">
+      <a href="login.html" class="login"><i class="fas fa-lock"></i> Login</a>
+      <button onclick="window.location.href='registration.html'" class="signup">Sign up</button>
+    </div>
+    
+    <!-- User profile (shown when logged in) -->
+    <div class="user-profile">
+      <div class="user-avatar">U</div>
+      <div class="dropdown-menu">
+        <div class="user-info">
+          <div class="user-name">Loading...</div>
+          <div class="user-email">user@example.com</div>
+        </div>
+        <div class="dropdown-links">
+          <a href="dashboard.html" class="dropdown-link">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="profile.html" class="dropdown-link">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="courses.html" class="dropdown-link">
+            <i class="fas fa-book"></i>
+            <span>My Courses</span>
+          </a>
+          <a href="settings.html" class="dropdown-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  <!-- Rest of your home page content -->
+   <!-- Hero Section -->
+    <div class="head">
+      <img src="bgimg.png" class="bg">
+      <div class="bgcontent">
+        <h1>Exchange skills and <br> Empower each other.</h1>
+        <h2>Find mentors, share knowledge, and grow together on Skill X</h2>
+        <button class="join">Join Now</button>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <section class="detail">
+    <section class="hero">
+            <div class="hero-content">
+                <h1>Skill X Made Easy</h1>
+                <p>Unlock your creative potential with thousands of courses taught by industry professionals. From beginner to pro, we have the perfect learning path for you.</p>
+                <a href="#" class="btn">Start Learning Today</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Creative Learning">
+            </div>
+        </section>
+        
+        <section class="features">
+            <h2>Why Choose Skill X?</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Thousands of creative classes. Beginner to pro.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Taught by creative pros and industry icons.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Learning Paths to help you achieve your goals.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Certificates to celebrate your accomplishments.</span>
+                </li>
+            </ul>
+            
+            <div class="divider"></div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">MEMBERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">CLASSES</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">TEACHERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">
+                        Student's RATING
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  </section>
+
+
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+<!-- Navbar authentication script -->
+<script src="auth-nav.js"></script>
+
+    <script src="landingpage.js"></script>
+
+</body>
+</html>

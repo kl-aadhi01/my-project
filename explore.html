@@ -1,0 +1,196 @@
+<html>
+<head>
+    <!-- Add this in head -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expore courses</title>
+    <!-- Add navbar.css -->
+<link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="explore.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Banner -->
+    <div class="header">
+      <p class="header-content">
+        <b>AI is changing the game</b> | Get the skills with Skill X.
+      </p>
+    </div>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navleft">
+    <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+    <ul class="navfont">
+      <li><a href="landingpage.html" class="nav-link">Home</a></li>
+      <li><a href="explore.html" class="nav-link">Explore</a></li>
+      <li><a href="mentor.html" class="nav-link">Find Mentors</a></li>
+      <li><a href="#opportunities" class="nav-link">Opportunities</a></li>
+      <li><a href="price.html" class="nav-link">Plans & Pricing</a></li>
+    </ul>
+  </div>
+
+  <div class="navright">
+    <input type="text" class="searchbar" placeholder="Search for anything">
+    
+    <!-- Guest buttons (shown when not logged in) -->
+    <div class="guest-buttons">
+      <a href="login.html" class="login"><i class="fas fa-lock"></i> Login</a>
+      <button onclick="window.location.href='registration.html'" class="signup">Sign up</button>
+    </div>
+    
+    <!-- User profile (shown when logged in) -->
+    <div class="user-profile">
+      <div class="user-avatar">U</div>
+      <div class="dropdown-menu">
+        <div class="user-info">
+          <div class="user-name">Loading...</div>
+          <div class="user-email">user@example.com</div>
+        </div>
+        <div class="dropdown-links">
+          <a href="dashboard.html" class="dropdown-link">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="profile.html" class="dropdown-link">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="courses.html" class="dropdown-link">
+            <i class="fas fa-book"></i>
+            <span>My Courses</span>
+          </a>
+          <a href="settings.html" class="dropdown-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+    <!-- Hero Section -->
+    <section class="lion">
+        <div class="container lion-content">
+            <h1>Master In-Demand Skills Today</h1>
+            <p>Unlock your potential with our comprehensive courses designed for career advancement.</p>
+            <a href="#services" class="cta-btn">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Consulting">
+                    <div class="card-content">
+                        <h3>Business Consulting</h3>
+                        <p>Get expert advice to scale your business efficiently with proven strategies.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <img src="dm.webp" alt="Marketing">
+                    <div class="card-content">
+                        <h3>Digital Marketing</h3>
+                        <p>Boost your online presence with targeted campaigns and data-driven insights.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Development">
+                    <div class="card-content">
+                        <h3>Web Development</h3>
+                        <p>Custom-built websites and apps designed for performance and user experience.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <img src="uiux.jpeg" alt="design">
+                    <div class="card-content">
+                        <h3>UI-UX design</h3>
+                        <p>Intuitive and visually engaging interfaces crafted to enhance user satisfaction and usability.</p>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="service-card">
+                    <img src="cc.avif" alt="design">
+                    <div class="card-content">
+                        <h3>Content Creation</h3>
+                        <p>Create engaging written, visual, and video content that builds audience trust and drives conversions.</p>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="service-card">
+                    <img src="ad.webp" alt="design">
+                    <div class="card-content">
+                        <h3>App Development</h3>
+                        <p>Build high-performance Android & iOS apps using Flutter, React Native, or native frameworks.</p>
+                    </div>
+                </div>
+                <!-- Card 7 -->
+                <div class="service-card">
+                    <img src="cd.avif" alt="design">
+                    <div class="card-content">
+                        <h3>Cloud & DevOps</h3>
+                        <p>Learn to deploy, scale, and manage applications efficiently using modern cloud and DevOps tools.</p>
+                    </div>
+                </div>
+                <!-- Card 8 -->
+                <div class="service-card">
+                    <img src="da.avif" alt="design">
+                    <div class="card-content">
+                        <h3>Data & Analytics</h3>
+                        <p>Leverage data to make smarter business decisions with analytics, visualization, and insights.</p>
+                    </div>
+                </div>
+                <!-- Card 9 -->
+                <div class="service-card">
+                    <img src="ai.avif" alt="design">
+                    <div class="card-content">
+                        <h3>Artificial Intelligence</h3>
+                        <p>Understand and apply AI & Machine Learning concepts to build smarter applications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+<!-- Navbar authentication script -->
+<script src="auth-nav.js"></script>
+
+    <script src="explore.js"></script>
+
+
+</body>
+</html>

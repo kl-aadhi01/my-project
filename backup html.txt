@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill X</title>
+  <link rel="stylesheet" href="sample2.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <section id="a">
+    <!-- Header Banner -->
+    <div class="header">
+      <p class="header-content">
+        <b>AI is changing the game</b> | Get the skills with Skill X.
+      </p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="navleft">
+        <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+        <ul class="navfont">
+          <li><a href="sample2.html">Explore</a></li>
+          <li><a href="#mentors">Find Mentors</a></li>
+          <li><a href="#become">Become a Mentor</a></li>
+          <li><a href="price.html">Plans & Pricing</a></li>
+        </ul>
+      </div>
+
+      <div class="navright">
+        <input type="text" class="searchbar" placeholder="Search for anything">
+        <a href="#" class="login">🔐 Login</a>
+        <button class="signup">Sign Up</button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="head">
+      <img src="bgimg.png" class="bg">
+      <div class="bgcontent">
+        <h1>Exchange skills and <br> Empower each other.</h1>
+        <h2>Find mentors, share knowledge, and grow together on Skill X</h2>
+        <button class="join">Join Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail">
+    <section class="hero">
+            <div class="hero-content">
+                <h1>Creative Learning Made Easy</h1>
+                <p>Unlock your creative potential with thousands of courses taught by industry professionals. From beginner to pro, we have the perfect learning path for you.</p>
+                <a href="#" class="btn">Start Learning Today</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Creative Learning">
+            </div>
+        </section>
+        
+        <section class="features">
+            <h2>Why Choose CreativeLearn?</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Thousands of creative classes. Beginner to pro.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Taught by creative pros and industry icons.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Learning Paths to help you achieve your goals.</span>
+                </li>
+                <li>
+                    <i class="fas fa-check-square checked"></i>
+                    <span>Certificates to celebrate your accomplishments.</span>
+                </li>
+            </ul>
+            
+            <div class="divider"></div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">4.25k+</div>
+                    <div class="stat-label">MEMBERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30k+</div>
+                    <div class="stat-label">CLASSES</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9k+</div>
+                    <div class="stat-label">TEACHERS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">
+                        APP STORE RATING
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  </section>
+</body>
+</html>

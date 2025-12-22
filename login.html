@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X | Login</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+    <!-- Add this inside <head> section -->
+<style>
+    .error-message {
+        color: #ff6b6b;
+        background: rgba(255, 107, 107, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        display: none;
+    }
+    
+    .success-message {
+        color: #2ed573;
+        background: rgba(46, 213, 115, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        margin: 10px 0;
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Skill X</h1>
+            <p>Unlock your potential</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="email" id="email" placeholder="Username or Email" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            
+            <div class="options">
+                <label class="remember">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
+            </div>
+            
+            <!-- Add error display area -->
+            <div id="login-error" class="error-message" style="color: red; margin: 10px 0; display: none;"></div>
+            
+            <button type="button" class="login-btn" onclick="loginUser()">Login</button>
+            
+            <div class="signup">
+    Don't have an account? <a href="registration.html">Sign Up</a>
+</div>
+
+<div class="divider">
+    <span>Or continue with</span>
+</div>
+
+<!-- 🔥 ADD GOOGLE BUTTON HERE (BEFORE social-login) -->
+<button onclick="googleLogin()" class="google-btn">
+    <i class="fab fa-google"></i> Continue with Google
+</button>
+
+<div class="social-login">
+    <a href="#" class="social-btn">
+        <i class="fab fa-google"></i>
+    </a>
+    <a href="#" class="social-btn">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" class="social-btn">
+        <i class="fab fa-twitter"></i>
+    </a>
+</div>
+
+<!-- Add message div for Google login errors -->
+<div id="google-login-message" style="display: none; padding: 10px; margin: 10px 0; border-radius: 5px;"></div>
+        </form>
+
+        <p id="login-message"></p>
+    </div>
+
+    <!-- Load JS at the end of body -->
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - Find Professionals</title>
+    <!-- Add navbar.css -->
+<link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="mentor.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Banner -->
+    <div class="header">
+      <p class="header-content">
+        <b>AI is changing the game</b> | Get the skills with Skill X.
+      </p>
+    </div>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navleft">
+    <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+    <ul class="navfont">
+      <li><a href="landingpage.html" class="nav-link">Home</a></li>
+      <li><a href="explore.html" class="nav-link">Explore</a></li>
+      <li><a href="mentor.html" class="nav-link">Find Mentors</a></li>
+      <li><a href="#opportunities" class="nav-link">Opportunities</a></li>
+      <li><a href="price.html" class="nav-link">Plans & Pricing</a></li>
+    </ul>
+  </div>
+
+  <div class="navright">
+    <input type="text" class="searchbar" placeholder="Search for anything">
+    
+    <!-- Guest buttons (shown when not logged in) -->
+    <div class="guest-buttons">
+      <a href="login.html" class="login"><i class="fas fa-lock"></i> Login</a>
+      <button onclick="window.location.href='registration.html'" class="signup">Sign up</button>
+    </div>
+    
+    <!-- User profile (shown when logged in) -->
+    <div class="user-profile">
+      <div class="user-avatar">U</div>
+      <div class="dropdown-menu">
+        <div class="user-info">
+          <div class="user-name">Loading...</div>
+          <div class="user-email">user@example.com</div>
+        </div>
+        <div class="dropdown-links">
+          <a href="dashboard.html" class="dropdown-link">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="profile.html" class="dropdown-link">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="courses.html" class="dropdown-link">
+            <i class="fas fa-book"></i>
+            <span>My Courses</span>
+          </a>
+          <a href="settings.html" class="dropdown-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    <!-- Rest of your mentor page content -->
+     <div class="container">
+        <header>
+            <h1>Find Top Professionals</h1>
+            <p class="subtitle">Click on a category to browse skilled professionals in that field</p>
+        </header>
+        
+        <div class="categories-container">
+            <div class="category-column">
+                <h2>Popular Categories</h2>
+                <ul class="category-list">
+                    <li class="category-item active" data-category="development">
+                        <i class="fas fa-code"></i> Development & IT
+                    </li>
+                    <li class="category-item" data-category="design">
+                        <i class="fas fa-palette"></i> Design & Creative
+                    </li>
+                    <li class="category-item" data-category="ai">
+                        <i class="fas fa-robot"></i> AI Services
+                    </li>
+                    <li class="category-item" data-category="sales">
+                        <i class="fas fa-chart-line"></i> Sales & Marketing
+                    </li>
+                    <li class="category-item" data-category="writing">
+                        <i class="fas fa-pen"></i> Writing & Translation
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="category-column">
+                <h2>Other Categories</h2>
+                <ul class="category-list">
+                    <li class="category-item" data-category="admin">
+                        <i class="fas fa-headset"></i> Admin & Support
+                    </li>
+                    <li class="category-item" data-category="finance">
+                        <i class="fas fa-chart-pie"></i> Finance & Accounting
+                    </li>
+                    <li class="category-item" data-category="legal">
+                        <i class="fas fa-gavel"></i> Legal
+                    </li>
+                    <li class="category-item" data-category="hr">
+                        <i class="fas fa-users"></i> HR & Training
+                    </li>
+                    <li class="category-item" data-category="engineering">
+                        <i class="fas fa-cogs"></i> Engineering & Architecture
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Development & IT Professionals -->
+        <div class="professionals-container active" id="development">
+            <div class="professionals-header">
+                <h2>Development & IT Professionals</h2>
+                <p>Top talent in web and software development</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Goutham</h3>
+                        <p class="professional-title">Website Developer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$50/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Karthick</h3>
+                        <p class="professional-title">AI Engineer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$60/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Machine Learning</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">TensorFlow</span>
+                            <span class="skill-tag">Data Science</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Virat</h3>
+                        <p class="professional-title">Software Developer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$50/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Microservices</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI Services Professionals -->
+        <div class="professionals-container" id="ai">
+            <div class="professionals-header">
+                <h2>AI Services Professionals</h2>
+                <p>Experts in artificial intelligence and machine learning</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Dravid</h3>
+                        <p class="professional-title">AI Engineer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">5.0 on avg</span>
+                        </div>
+                        <div class="rate">$75/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Deep Learning</span>
+                            <span class="skill-tag">Computer Vision</span>
+                            <span class="skill-tag">PyTorch</span>
+                            <span class="skill-tag">NLP</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Ashok</h3>
+                        <p class="professional-title">ML Researcher</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.8 on avg</span>
+                        </div>
+                        <div class="rate">$85/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Research</span>
+                            <span class="skill-tag">Algorithm Design</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Design & Creative Professionals -->
+        <div class="professionals-container" id="design">
+            <div class="professionals-header">
+                <h2>Design & Creative Professionals</h2>
+                <p>Creative minds for your design projects</p>
+            </div>
+            
+            <div class="professionals-grid">
+                <div class="professional-card">
+                    <div class="professional-header">
+                        <h3 class="professional-name">Aadhish</h3>
+                        <p class="professional-title">UI/UX Designer</p>
+                    </div>
+                    <div class="professional-details">
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-text">5.0 on avg</span>
+                        </div>
+                        <div class="rate">$65/hr+</div>
+                        <div class="skills">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">User Research</span>
+                        </div>
+                        <div class="professional-actions">
+                            <button class="btn btn-primary">View Profile</button>
+                            <button class="btn btn-outline">Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Other categories would follow the same pattern -->
+        
+    </div>
+
+
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+<!-- Navbar authentication script -->
+<script src="auth-nav.js"></script>
+
+        <script src="mentor.js"></script>
+
+
+</body>
+</html>

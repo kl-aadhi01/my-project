@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Hover Effects Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .effect-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .effect-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .nav-demo {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .nav-demo ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-demo li {
+            position: relative;
+        }
+        
+        .nav-demo a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Effect 1: Simple Underline */
+        .underline a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+        
+        .underline a:hover::after {
+            width: 100%;
+        }
+        
+        /* Effect 2: Double Underline */
+        .double-underline a::before,
+        .double-underline a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+        
+        .double-underline a::before {
+            left: 50%;
+        }
+        
+        .double-underline a::after {
+            right: 50%;
+        }
+        
+        .double-underline a:hover::before,
+        .double-underline a:hover::after {
+            width: 50%;
+        }
+        
+        /* Effect 3: Background Fill */
+        .background-fill a {
+            padding: 8px 15px;
+            border-radius: 4px;
+            z-index: 1;
+        }
+        
+        .background-fill a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #2ecc71;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .background-fill a:hover::before {
+            width: 100%;
+        }
+        
+        .background-fill a:hover {
+            color: white;
+        }
+        
+        /* Effect 4: Swipe Effect */
+        .swipe a {
+            padding: 8px 15px;
+            overflow: hidden;
+        }
+        
+        .swipe a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #9b59b6;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .swipe a:hover::before {
+            left: 0;
+        }
+        
+        .swipe a:hover {
+            color: white;
+        }
+        
+        /* Effect 5: Border Animation */
+        .border-animation a {
+            padding: 8px 15px;
+        }
+        
+        .border-animation a::before,
+        .border-animation a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .border-animation a::before {
+            top: 0;
+            left: 0;
+            border-top: 2px solid transparent;
+            border-left: 2px solid transparent;
+        }
+        
+        .border-animation a::after {
+            bottom: 0;
+            right: 0;
+            border-bottom: 2px solid transparent;
+            border-right: 2px solid transparent;
+        }
+        
+        .border-animation a:hover::before,
+        .border-animation a:hover::after {
+            width: 100%;
+            height: 100%;
+            border-color: #f39c12;
+        }
+        
+        /* Effect 6: 3D Lift */
+        .lift-3d a {
+            padding: 8px 15px;
+            transform-style: preserve-3d;
+            perspective: 500px;
+            transition: all 0.3s ease;
+        }
+        
+        .lift-3d a:hover {
+            transform: translateY(-5px) rotateX(10deg);
+            color: #e67e22;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Effect 7: Text Shadow */
+        .text-shadow a {
+            transition: all 0.3s ease;
+        }
+        
+        .text-shadow a:hover {
+            color: #3498db;
+            text-shadow: 2px 2px 0px #bdc3c7, 4px 4px 0px rgba(0, 0, 0, 0.1);
+            transform: translate(-2px, -2px);
+        }
+        
+        /* Effect 8: Letter Spacing */
+        .letter-spacing a {
+            transition: all 0.3s ease;
+        }
+        
+        .letter-spacing a:hover {
+            letter-spacing: 2px;
+            color: #e74c3c;
+        }
+        
+        /* Effect 9: Gradient Underline */
+        .gradient-underline a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            transition: width 0.3s ease;
+        }
+        
+        .gradient-underline a:hover::after {
+            width: 100%;
+        }
+        
+        /* Effect 10: Circle Fill */
+        .circle-fill a {
+            padding: 8px 15px;
+            border-radius: 30px;
+            z-index: 1;
+        }
+        
+        .circle-fill a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #1abc9c;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .circle-fill a:hover::before {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .circle-fill a:hover {
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            display: none;
+        }
+        
+        .toggle-code {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-code:hover {
+            background: #2980b9;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .instructions h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Unique Hover Effects Collection</h1>
+            <p class="subtitle">10 creative hover animations for your navigation menus</p>
+        </header>
+        
+        <section class="instructions">
+            <h2>How to Use These Effects</h2>
+            <ol>
+                <li>Click the "Show Code" button under any effect to view its CSS</li>
+                <li>Copy the CSS for the effect you like</li>
+                <li>Add the appropriate class to your navigation links</li>
+                <li>Customize colors and timing to match your design</li>
+            </ol>
+        </section>
+        
+        <div class="effects-grid">
+            <!-- Effect 1 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Simple Underline</h3>
+                </div>
+                <div class="card-content">
+                    <p>A clean underline that expands on hover.</p>
+                    <div class="nav-demo underline">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(1)">Show Code</button>
+                    <pre class="code-block" id="code-1">
+.underline a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #3498db;
+    transition: width 0.3s ease;
+}
+
+.underline a:hover::after {
+    width: 100%;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 2 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Double Underline</h3>
+                </div>
+                <div class="card-content">
+                    <p>Two lines that expand from the center.</p>
+                    <div class="nav-demo double-underline">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(2)">Show Code</button>
+                    <pre class="code-block" id="code-2">
+.double-underline a::before,
+.double-underline a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+.double-underline a::before {
+    left: 50%;
+}
+
+.double-underline a::after {
+    right: 50%;
+}
+
+.double-underline a:hover::before,
+.double-underline a:hover::after {
+    width: 50%;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 3 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Background Fill</h3>
+                </div>
+                <div class="card-content">
+                    <p>Background color fills the link on hover.</p>
+                    <div class="nav-demo background-fill">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(3)">Show Code</button>
+                    <pre class="code-block" id="code-3">
+.background-fill a {
+    padding: 8px 15px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.background-fill a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #2ecc71;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.background-fill a:hover::before {
+    width: 100%;
+}
+
+.background-fill a:hover {
+    color: white;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 4 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Swipe Effect</h3>
+                </div>
+                <div class="card-content">
+                    <p>Color swipes across the link from left to right.</p>
+                    <div class="nav-demo swipe">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(4)">Show Code</button>
+                    <pre class="code-block" id="code-4">
+.swipe a {
+    padding: 8px 15px;
+    overflow: hidden;
+}
+
+.swipe a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #9b59b6;
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.swipe a:hover::before {
+    left: 0;
+}
+
+.swipe a:hover {
+    color: white;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 5 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Border Animation</h3>
+                </div>
+                <div class="card-content">
+                    <p>Animated borders appear around the link.</p>
+                    <div class="nav-demo border-animation">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(5)">Show Code</button>
+                    <pre class="code-block" id="code-5">
+.border-animation a {
+    padding: 8px 15px;
+}
+
+.border-animation a::before,
+.border-animation a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    transition: all 0.3s ease;
+}
+
+.border-animation a::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+}
+
+.border-animation a::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+}
+
+.border-animation a:hover::before,
+.border-animation a:hover::after {
+    width: 100%;
+    height: 100%;
+    border-color: #f39c12;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 6 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>3D Lift</h3>
+                </div>
+                <div class="card-content">
+                    <p>The link lifts and tilts for a 3D effect.</p>
+                    <div class="nav-demo lift-3d">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(6)">Show Code</button>
+                    <pre class="code-block" id="code-6">
+.lift-3d a {
+    padding: 8px 15px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    transition: all 0.3s ease;
+}
+
+.lift-3d a:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    color: #e67e22;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 7 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Text Shadow</h3>
+                </div>
+                <div class="card-content">
+                    <p>Multiple text shadows create a layered effect.</p>
+                    <div class="nav-demo text-shadow">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(7)">Show Code</button>
+                    <pre class="code-block" id="code-7">
+.text-shadow a {
+    transition: all 0.3s ease;
+}
+
+.text-shadow a:hover {
+    color: #3498db;
+    text-shadow: 2px 2px 0px #bdc3c7, 4px 4px 0px rgba(0, 0, 0, 0.1);
+    transform: translate(-2px, -2px);
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 8 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Letter Spacing</h3>
+                </div>
+                <div class="card-content">
+                    <p>Letters spread out on hover for a dramatic effect.</p>
+                    <div class="nav-demo letter-spacing">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(8)">Show Code</button>
+                    <pre class="code-block" id="code-8">
+.letter-spacing a {
+    transition: all 0.3s ease;
+}
+
+.letter-spacing a:hover {
+    letter-spacing: 2px;
+    color: #e74c3c;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 9 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Gradient Underline</h3>
+                </div>
+                <div class="card-content">
+                    <p>A colorful gradient underline expands on hover.</p>
+                    <div class="nav-demo gradient-underline">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(9)">Show Code</button>
+                    <pre class="code-block" id="code-9">
+.gradient-underline a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    transition: width 0.3s ease;
+}
+
+.gradient-underline a:hover::after {
+    width: 100%;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Effect 10 -->
+            <div class="effect-card">
+                <div class="card-header">
+                    <h3>Circle Fill</h3>
+                </div>
+                <div class="card-content">
+                    <p>A circle expands from the center to fill the link.</p>
+                    <div class="nav-demo circle-fill">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                        </ul>
+                    </div>
+                    <button class="toggle-code" onclick="toggleCode(10)">Show Code</button>
+                    <pre class="code-block" id="code-10">
+.circle-fill a {
+    padding: 8px 15px;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+.circle-fill a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: #1abc9c;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.circle-fill a:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
+.circle-fill a:hover {
+    color: white;
+}</pre>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Hover Effects Collection &copy; 2023 | Created with CSS Magic</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCode(id) {
+            const codeBlock = document.getElementById(`code-${id}`);
+            const button = codeBlock.previousElementSibling;
+            
+            if (codeBlock.style.display === 'block') {
+                codeBlock.style.display = 'none';
+                button.textContent = 'Show Code';
+            } else {
+                codeBlock.style.display = 'block';
+                button.textContent = 'Hide Code';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X | Sign Up</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>Skill X</h1>
+            <p>Start your learning journey</p>
+        </div>
+        
+        <form id="signupForm">
+            <div class="name-fields">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="fname" placeholder="First Name" required>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="lname" placeholder="Last Name" required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Password" required>
+                <div class="password-strength">
+                    <div class="strength-meter" id="strengthMeter"></div>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            </div>
+            
+            <!-- Error Message Container -->
+            <div id="error" class="error-message" style="color: #ff6b6b; margin: 10px 0; display: none;"></div>
+            
+            <!-- Success Message Container -->
+            <div id="success" class="success-message" style="color: #2ed573; margin: 10px 0; display: none;"></div>
+            
+            <div class="terms">
+                <input type="checkbox" id="agreeTerms" required>
+                <label for="agreeTerms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            
+            <button type="button" class="signup-btn" onclick="register()" id="signupButton">
+                <span id="buttonText">Create Account</span>
+                <span id="buttonSpinner" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> Creating...
+                </span>
+            </button>
+            
+            <div class="login">
+                Already have an account? <a href="login.html">Log In</a>
+            </div>
+            
+            <div class="divider">
+                <span>Or sign up with</span>
+            </div>
+            
+            <div class="social-signup">
+                <a href="#" class="social-btn">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Move script to bottom of body to ensure DOM is loaded -->
+    <script src="registration.js"></script>
+</body>
+</html>

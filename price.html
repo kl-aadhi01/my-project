@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan and Pricing</title>
+    <!-- Add navbar.css -->
+<link rel="stylesheet" href="navbar.css">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="price.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Banner -->
+    <div class="header">
+        <p class="header-content">
+            <b>AI is changing the game</b> | Get the skills with Skill X.
+        </p>
+    </div>
+
+    <!-- Navigation Bar -->
+<nav class="navbar">
+  <div class="navleft">
+    <img src="logo project6.png" alt="Skill X Logo" class="xyz">
+    <ul class="navfont">
+      <li><a href="landingpage.html" class="nav-link">Home</a></li>
+      <li><a href="explore.html" class="nav-link">Explore</a></li>
+      <li><a href="mentor.html" class="nav-link">Find Mentors</a></li>
+      <li><a href="#opportunities" class="nav-link">Opportunities</a></li>
+      <li><a href="price.html" class="nav-link">Plans & Pricing</a></li>
+    </ul>
+  </div>
+
+  <div class="navright">
+    <input type="text" class="searchbar" placeholder="Search for anything">
+    
+    <!-- Guest buttons (shown when not logged in) -->
+    <div class="guest-buttons">
+      <a href="login.html" class="login"><i class="fas fa-lock"></i> Login</a>
+      <button onclick="window.location.href='registration.html'" class="signup">Sign up</button>
+    </div>
+    
+    <!-- User profile (shown when logged in) -->
+    <div class="user-profile">
+      <div class="user-avatar">U</div>
+      <div class="dropdown-menu">
+        <div class="user-info">
+          <div class="user-name">Loading...</div>
+          <div class="user-email">user@example.com</div>
+        </div>
+        <div class="dropdown-links">
+          <a href="dashboard.html" class="dropdown-link">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="profile.html" class="dropdown-link">
+            <i class="fas fa-user"></i>
+            <span>My Profile</span>
+          </a>
+          <a href="courses.html" class="dropdown-link">
+            <i class="fas fa-book"></i>
+            <span>My Courses</span>
+          </a>
+          <a href="settings.html" class="dropdown-link">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </div>
+        <div class="dropdown-divider"></div>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    <!-- Rest of your pricing page content -->
+    </section>
+    <section id="two">
+        <h2 class="phead">Choose a plan for Success</h2>
+        <p class="psub">Don't want to buy courses one by one? Pick a plan to help you, your team, or your organization
+            achieve outcomes faster.</p>
+        <div class="apple">
+
+            <div class="apple11">
+                <div class="a">
+                    <p class="a1">Personal Plan</p>
+                    <p class="a2">For you</p>
+                    <p class="a3">👤Individual</p>
+                </div>
+                <br>
+                <h3 class="a4">Starting at ₹500 per month</h3>
+                <p class="a5">Build for monthly or annualy. Cancel anytime.</p>
+                <button class="a6">Start subscription</button>
+                <br>
+                <br>
+            </div>
+
+            <div class="apple12">
+                <div class="a">
+                    <p class="a1">Team Plan</p>
+                    <p class="a2">For your Team</p>
+                    <p class="a3">👥2 to 20 people</p>
+                </div>
+                <br>
+                <h3 class="a4">₹5,000 a month per user</h3>
+                <p class="a5">Build for annualy. Cancel anytime.</p>
+                <button class="a6">Start subscription </button>
+            </div>
+
+            <div class="apple13">
+                <div class="a">
+                    <p class="a1">Enterprise Plan</p>
+                    <p class="a2">For your whole organization</p>
+                    <p class="a3">👥More than 20 people</p>
+                </div>
+                <br>
+                <h3 class="b1">Contact sales for Pricing</h3>
+                <br>
+                <button class="a6">Start subscription </button>
+            </div>
+
+            <!--<div class="apple12">
+            <h3>🎨 Creative Arts</h3>
+            <p>Graphic Design, Video Editing, Photography, Writing</p>
+        </div>
+
+        <div class="apple13">
+            <h3>💼 Business</h3>
+            <p>Marketing, Finance, Leadership, Public Speaking</p>
+        </div>-->
+
+            <!-- Add more categories -->
+        </div>
+    </section>
+
+
+    <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+
+<!-- Navbar authentication script -->
+<script src="auth-nav.js"></script>
+
+    <script src="price.js"></script>
+</body>
+
+</html>
