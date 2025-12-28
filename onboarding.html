@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - Onboarding Profile</title>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #508cee 70% , #fafafb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #abb6d0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #7395b8;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #a2aabc;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #364874;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #6780ad 0%, #7395b8 100%);
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .onboarding-form {
+            position: relative;
+        }
+
+        .card {
+            background: linear-gradient(100deg, #02174a 0%,black 50%, #426197 100%);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border: 1px solid #364874;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #abb6d0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .card-icon {
+            color: #7395b8;
+            font-size: 1.5rem;
+        }
+
+        .card-header p {
+            color: #a2aabc;
+            font-size: 0.95rem;
+        }
+
+        .card-content {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #abb6d0;
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #364874;
+            border-radius: 10px;
+            font-size: 1rem;
+            background-color: #0d1022;
+            color: #abb6d0;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6780ad;
+            background-color: #131a29;
+        }
+
+        .form-control::placeholder {
+            color: #596f9b;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            padding: 10px 18px;
+            background-color: #364874;
+            color: #abb6d0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+        }
+
+        .skill-tag:hover {
+            background-color: #425480;
+            transform: translateY(-2px);
+        }
+
+        .skill-tag.selected {
+            background-color: #6780ad;
+            color: #fff;
+            border-color: #7395b8;
+        }
+
+        .skill-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #364874;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background-color: #0d1022;
+            color: #abb6d0;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .skill-input:focus {
+            outline: none;
+            border-color: #6780ad;
+            background-color: #131a29;
+        }
+
+        .skill-input::placeholder {
+            color: #596f9b;
+        }
+
+        .skill-add-btn {
+            padding: 12px 24px;
+            background-color: #6780ad;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .skill-add-btn:hover {
+            background-color: #7395b8;
+            transform: translateY(-2px);
+        }
+
+        .capability-options,
+        .availability-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .capability-option,
+        .availability-option {
+            background-color: #0d1022;
+            border: 2px solid #364874;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        .capability-option:hover,
+        .availability-option:hover {
+            border-color: #6780ad;
+            background-color: #131a29;
+            transform: translateY(-4px);
+        }
+
+        .capability-option.selected,
+        .availability-option.selected {
+            border-color: #7395b8;
+            background-color: #364874;
+        }
+
+        .capability-icon,
+        .availability-icon {
+            font-size: 2.5rem;
+            color: #6780ad;
+            margin-bottom: 12px;
+        }
+
+        .capability-option h3,
+        .availability-option h3 {
+            color: #abb6d0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .capability-option p,
+        .availability-option p {
+            color: #a2aabc;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #364874;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(103, 128, 173, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #364874;
+            color: #abb6d0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #425480;
+            transform: translateY(-2px);
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .completion-icon {
+            font-size: 5rem;
+            color: #7395b8;
+            margin-bottom: 24px;
+            animation: scaleIn 0.6s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .completion-message h2 {
+            color: #abb6d0;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .completion-message p {
+            color: #a2aabc;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .completion-message .btn-primary {
+            margin: 0 auto;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #364874;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step.active {
+            background-color: #7395b8;
+            transform: scale(1.3);
+        }
+
+        .step.completed {
+            background-color: #6780ad;
+        }
+
+        /* Adaptive flow styles */
+        .conditional-text {
+            font-size: 0.9rem;
+            color: #7395b8;
+            font-style: italic;
+            margin-left: 10px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+
+        .edit-mode-indicator {
+            background: linear-gradient(135deg, #4a6fa5 0%, #5a80b0 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .fa-spin {
+            animation: fa-spin 1s linear infinite;
+        }
+
+        @keyframes fa-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-header h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .capability-options,
+            .availability-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .skill-input-container {
+                flex-direction: column;
+            }
+            
+            .skill-add-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 25px 15px;
+            }
+            
+            .card-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .capability-option,
+            .availability-option {
+                padding: 20px;
+                min-height: 160px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="edit-mode-indicator" id="edit-mode-indicator">
+            <i class="fas fa-edit"></i> You are in edit mode. Your changes will update your existing profile.
+        </div>
+        
+        <div class="header">
+            <h1>Skill X Onboarding</h1>
+            <p id="onboarding-description">Complete your profile to start connecting with others and sharing knowledge</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="onboarding-form">
+            <!-- Card 1: Name -->
+            <div class="card active" id="card-name">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-user"></i></span> What's your name?</h2>
+                    <p>This will be your display name on Sillx</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="name">Display Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your display name" maxlength="50">
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <div></div>
+                    <button class="btn btn-primary" id="next-name">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 2: Role Selection -->
+            <div class="card" id="card-role">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-user-tie"></i></span> What do you want to do?</h2>
+                    <p>Select your role on Skill X</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label>I want to:</label>
+                        <div class="capability-options">
+                            <div class="capability-option" data-capability="teach-learn">
+                                <div class="capability-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <h3>Both Teach & Learn</h3>
+                                <p>I want to teach some skills and learn others</p>
+                            </div>
+                            <div class="capability-option" data-capability="teach-only">
+                                <div class="capability-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <h3>Teach Only</h3>
+                                <p>I only want to teach skills to others</p>
+                            </div>
+                            <div class="capability-option" data-capability="learn-only">
+                                <div class="capability-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <h3>Learn Only</h3>
+                                <p>I only want to learn from others</p>
+                            </div>
+                            <div class="capability-option" data-capability="not-interested">
+                                <div class="capability-icon"><i class="fas fa-user-clock"></i></div>
+                                <h3>Just Browse</h3>
+                                <p>Not interested in teaching or learning right now</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-role"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-role">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 3: Skills to Teach -->
+            <div class="card" id="card-teach">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-chalkboard-teacher"></i></span> 
+                        What can you teach?
+                        <span class="conditional-text" id="teach-context"></span>
+                    </h2>
+                    <p>Select skills you're confident in teaching to others</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="skillsTeach">Teaching Skills</label>
+                        <div class="skills-container" id="teach-skills-container">
+                            <span class="skill-tag" data-skill="javascript">JavaScript</span>
+                            <span class="skill-tag" data-skill="uiux">UI/UX Design</span>
+                            <span class="skill-tag" data-skill="python">Python</span>
+                            <span class="skill-tag" data-skill="react">React</span>
+                            <span class="skill-tag" data-skill="nodejs">Node.js</span>
+                            <span class="skill-tag" data-skill="datascience">Data Science</span>
+                        </div>
+                        <div class="skill-input-container">
+                            <input type="text" id="teach-skill-input" class="skill-input" placeholder="Add a custom skill">
+                            <button class="skill-add-btn" id="add-teach-skill">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-teach"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-teach">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 4: Skills to Learn -->
+            <div class="card" id="card-learn">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-graduation-cap"></i></span> 
+                        What do you want to learn?
+                        <span class="conditional-text" id="learn-context"></span>
+                    </h2>
+                    <p>Select skills you're interested in learning from others</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="skillsLearn">Learning Skills</label>
+                        <div class="skills-container" id="learn-skills-container">
+                            <span class="skill-tag" data-skill="react">React</span>
+                            <span class="skill-tag" data-skill="firebase">Firebase</span>
+                            <span class="skill-tag" data-skill="aws">AWS</span>
+                            <span class="skill-tag" data-skill="devops">DevOps</span>
+                            <span class="skill-tag" data-skill="machinelearning">Machine Learning</span>
+                            <span class="skill-tag" data-skill="docker">Docker</span>
+                        </div>
+                        <div class="skill-input-container">
+                            <input type="text" id="learn-skill-input" class="skill-input" placeholder="Add a custom skill">
+                            <button class="skill-add-btn" id="add-learn-skill">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-learn"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-learn">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 5: Availability -->
+            <div class="card" id="card-availability">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-calendar-alt"></i></span> What's your availability?</h2>
+                    <p>Let others know when you're available for knowledge exchange</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label>Availability Status</label>
+                        <div class="availability-options">
+                            <div class="availability-option" data-availability="available">
+                                <div class="availability-icon"><i class="fas fa-check-circle"></i></div>
+                                <h3>Available</h3>
+                                <p>Open for teaching/learning sessions</p>
+                            </div>
+                            <div class="availability-option" data-availability="busy">
+                                <div class="availability-icon"><i class="fas fa-pause-circle"></i></div>
+                                <h3>Busy</h3>
+                                <p>Limited availability at the moment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-availability"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-availability">Complete Profile</button>
+                </div>
+            </div>
+
+            <!-- Card 6: Completion -->
+            <div class="card" id="card-completion">
+                <div class="card-content completion-message">
+                    <div class="completion-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2 id="completion-title">Profile Complete!</h2>
+                    <p id="completion-message-text">Your Sillx profile has been successfully created. You can now start connecting with others, sharing knowledge, and learning new skills.</p>
+                    <button class="btn btn-primary" id="view-profile">View Your Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step" data-card="name"></div>
+            <div class="step" data-card="role"></div>
+            <div class="step" data-card="teach"></div>
+            <div class="step" data-card="learn"></div>
+            <div class="step" data-card="availability"></div>
+        </div>
+    </div>
+
+    <script>
+// Your Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDa5n4kouD8j8SkZjFKbOaLIR1P75qt_0Q",
+    authDomain: "skill-x-e9103.firebaseapp.com",
+    projectId: "skill-x-e9103",
+    storageBucket: "skill-x-e9103.firebasestorage.app",
+    messagingSenderId: "168346915694",
+    appId: "1:168346915694:web:04d02b703f6af77cd0277f",
+    measurementId: "G-PYNH68ZKVS",
+    databaseURL: "https://skill-x-e9103-default-rtdb.firebaseio.com/"
+};
+
+// Initialize Firebase
+let auth, db;
+try {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    auth = firebase.auth();
+    db = firebase.firestore();
+} catch (error) {
+    console.error("Firebase initialization error:", error);
+    showFatalError("Failed to initialize app. Please refresh the page.");
+}
+
+// Check if we're in edit mode
+const urlParams = new URLSearchParams(window.location.search);
+const isEditMode = urlParams.get('edit') === 'true';
+
+// Form data storage
+let formData = {
+    userId: "",
+    name: "",
+    email: "",
+    skillsTeach: [],
+    skillsLearn: [],
+    roleCapability: {
+        canTeach: false,
+        canLearn: false
+    },
+    availability: "",
+    joinDate: new Date().toISOString().split('T')[0]
+};
+
+// Adaptive flow variables
+let currentCard = 'name';
+let userRole = '';
+const cardOrder = ['name', 'role', 'teach', 'learn', 'availability', 'completion'];
+let activeCards = [...cardOrder]; // Start with all cards
+
+// DOM Elements cache
+let cards = {};
+let steps = [];
+let progressBar;
+
+// Show loading overlay
+function showLoadingOverlay() {
+    const overlay = document.createElement('div');
+    overlay.id = 'loading-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        color: white;
+        font-size: 1.2rem;
+    `;
+    overlay.innerHTML = `
+        <div style="text-align: center;">
+            <i class="fas fa-spinner fa-spin fa-3x" style="margin-bottom: 20px;"></i>
+            <h2>Loading...</h2>
+            <p>Please wait while we prepare your onboarding</p>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+
+function hideLoadingOverlay() {
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) overlay.remove();
+}
+
+function showFatalError(message) {
+    document.body.innerHTML = `
+        <div style="text-align: center; padding: 60px; color: #ff5757; font-family: 'Poppins', sans-serif;">
+            <i class="fas fa-exclamation-triangle fa-3x" style="margin-bottom: 20px;"></i>
+            <h2>Application Error</h2>
+            <p>${message}</p>
+            <button onclick="window.location.reload()" style="background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%); color: white; border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; margin-top: 20px;">
+                <i class="fas fa-redo"></i> Reload Page
+            </button>
+        </div>
+    `;
+}
+
+// Cache DOM elements
+function cacheDOMElements() {
+    // Cache cards
+    cardOrder.forEach(cardId => {
+        cards[cardId] = document.getElementById(`card-${cardId}`);
+    });
+    
+    steps = document.querySelectorAll('.step');
+    progressBar = document.getElementById('progress');
+    
+    if (!cards.name || !steps.length || !progressBar) {
+        console.error('Required DOM elements not found');
+        return false;
+    }
+    return true;
+}
+
+// Main initialization
+document.addEventListener('DOMContentLoaded', async () => {
+    console.time('OnboardingLoadTime');
+    showLoadingOverlay();
+    
+    try {
+        // Cache DOM elements
+        if (!cacheDOMElements()) {
+            throw new Error('Failed to initialize DOM elements');
+        }
+        
+        // Check authentication with timeout
+        const user = await waitForAuth(10000);
+        
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // Initialize form data with user info
+        formData.userId = user.uid;
+        formData.email = user.email;
+        
+        // Update placeholder
+        const nameInput = document.getElementById('name');
+        if (nameInput) {
+            nameInput.placeholder = `Welcome, ${user.email.split('@')[0]}`;
+        }
+        
+        if (isEditMode) {
+            // Show edit mode indicator
+            const indicator = document.getElementById('edit-mode-indicator');
+            if (indicator) indicator.style.display = 'block';
+            
+            const description = document.getElementById('onboarding-description');
+            if (description) description.textContent = 'Edit your profile information';
+            
+            // Load existing profile data
+            await loadExistingProfile(user.uid);
+        } else {
+            // Check if profile exists
+            const profileExists = await checkExistingProfile(user.uid);
+            if (profileExists) {
+                window.location.href = 'profile.html';
+                return;
+            }
+        }
+        
+        // Setup all event listeners
+        setupEventListeners();
+        
+        // Initialize UI state
+        showCard('name');
+        updateStepIndicators();
+        
+    } catch (error) {
+        console.error("Onboarding initialization error:", error);
+        showFatalError("Failed to load onboarding. Please check your connection and try again.");
+    } finally {
+        hideLoadingOverlay();
+        console.timeEnd('OnboardingLoadTime');
+    }
+});
+
+// Wait for auth with timeout
+async function waitForAuth(timeoutMs) {
+    return new Promise((resolve) => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            unsubscribe();
+            resolve(user);
+        });
+        
+        setTimeout(() => {
+            unsubscribe();
+            console.warn('Auth timeout - using cached user');
+            resolve(auth.currentUser);
+        }, timeoutMs);
+    });
+}
+
+// Load existing profile for edit mode
+async function loadExistingProfile(userId) {
+    try {
+        const profile = await loadProfileWithTimeout(userId, 3000);
+        
+        if (profile) {
+            // Merge existing data into formData
+            Object.assign(formData, profile);
+            
+            // Determine user role from existing data
+            if (profile.roleCapability) {
+                if (profile.roleCapability.canTeach && profile.roleCapability.canLearn) {
+                    userRole = 'teach-learn';
+                } else if (profile.roleCapability.canTeach && !profile.roleCapability.canLearn) {
+                    userRole = 'teach-only';
+                } else if (!profile.roleCapability.canTeach && profile.roleCapability.canLearn) {
+                    userRole = 'learn-only';
+                } else {
+                    userRole = 'not-interested';
+                }
+            }
+            
+            // Pre-fill the form
+            prefillForm(profile);
+            
+            // Update completion messages
+            if (isEditMode) {
+                const title = document.getElementById('completion-title');
+                const message = document.getElementById('completion-message-text');
+                if (title) title.textContent = 'Profile Updated!';
+                if (message) message.textContent = 'Your Sillx profile has been successfully updated.';
+            }
+        }
+    } catch (error) {
+        console.error("Error loading profile for edit:", error);
+        alert('Note: Could not load existing profile. Starting with empty form.');
+    }
+}
+
+// Load profile with timeout
+async function loadProfileWithTimeout(userId, timeoutMs) {
+    return new Promise(async (resolve, reject) => {
+        const timeout = setTimeout(() => {
+            console.warn('Profile load timeout');
+            const localData = JSON.parse(localStorage.getItem('userProfileData'));
+            resolve(localData || null);
+        }, timeoutMs);
+        
+        try {
+            const docRef = db.collection('users').doc(userId);
+            const doc = await docRef.get();
+            clearTimeout(timeout);
+            
+            if (doc.exists) {
+                resolve(doc.data());
+            } else {
+                const localData = JSON.parse(localStorage.getItem('userProfileData'));
+                resolve(localData || null);
+            }
+        } catch (error) {
+            clearTimeout(timeout);
+            console.error("Firestore error:", error);
+            const localData = JSON.parse(localStorage.getItem('userProfileData'));
+            resolve(localData || null);
+        }
+    });
+}
+
+// Check if profile exists
+async function checkExistingProfile(userId) {
+    try {
+        const docRef = db.collection('users').doc(userId);
+        const doc = await docRef.get();
+        return doc.exists;
+    } catch (error) {
+        console.error("Error checking profile:", error);
+        return false;
+    }
+}
+
+// Pre-fill form with existing data
+function prefillForm(data) {
+    // Card 1: Name
+    if (data.name) {
+        const nameInput = document.getElementById('name');
+        if (nameInput) nameInput.value = data.name;
+    }
+    
+    // Card 3: Skills to Teach
+    if (data.skillsTeach && data.skillsTeach.length > 0) {
+        // Clear existing selections
+        document.querySelectorAll('#teach-skills-container .skill-tag.selected').forEach(tag => {
+            tag.classList.remove('selected');
+        });
+        
+        // Add skills
+        data.skillsTeach.forEach(skill => {
+            let skillTag = document.querySelector(`#teach-skills-container .skill-tag[data-skill="${skill}"]`);
+            if (!skillTag) {
+                // Create custom skill tag
+                skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.setAttribute('data-skill', skill);
+                skillTag.textContent = capitalizeFirstLetter(skill);
+                document.getElementById('teach-skills-container').appendChild(skillTag);
+            }
+            skillTag.classList.add('selected');
+            if (!formData.skillsTeach.includes(skill)) {
+                formData.skillsTeach.push(skill);
+            }
+        });
+    }
+    
+    // Card 4: Skills to Learn
+    if (data.skillsLearn && data.skillsLearn.length > 0) {
+        // Clear existing selections
+        document.querySelectorAll('#learn-skills-container .skill-tag.selected').forEach(tag => {
+            tag.classList.remove('selected');
+        });
+        
+        // Add skills
+        data.skillsLearn.forEach(skill => {
+            let skillTag = document.querySelector(`#learn-skills-container .skill-tag[data-skill="${skill}"]`);
+            if (!skillTag) {
+                // Create custom skill tag
+                skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag';
+                skillTag.setAttribute('data-skill', skill);
+                skillTag.textContent = capitalizeFirstLetter(skill);
+                document.getElementById('learn-skills-container').appendChild(skillTag);
+            }
+            skillTag.classList.add('selected');
+            if (!formData.skillsLearn.includes(skill)) {
+                formData.skillsLearn.push(skill);
+            }
+        });
+    }
+    
+    // Card 2: Role Capability (needs to be pre-selected)
+    if (data.roleCapability) {
+        let capability = '';
+        if (data.roleCapability.canTeach && data.roleCapability.canLearn) {
+            capability = 'teach-learn';
+        } else if (data.roleCapability.canTeach && !data.roleCapability.canLearn) {
+            capability = 'teach-only';
+        } else if (!data.roleCapability.canTeach && data.roleCapability.canLearn) {
+            capability = 'learn-only';
+        } else {
+            capability = 'not-interested';
+        }
+        
+        const capabilityOption = document.querySelector(`.capability-option[data-capability="${capability}"]`);
+        if (capabilityOption) {
+            capabilityOption.classList.add('selected');
+        }
+    }
+    
+    // Card 5: Availability
+    if (data.availability) {
+        const availabilityOption = document.querySelector(`.availability-option[data-availability="${data.availability}"]`);
+        if (availabilityOption) {
+            availabilityOption.classList.add('selected');
+            formData.availability = data.availability;
+        }
+    }
+}
+
+// Setup all event listeners
+function setupEventListeners() {
+    // Navigation buttons
+    document.getElementById('next-name').addEventListener('click', handleNextName);
+    document.getElementById('next-role').addEventListener('click', handleNextRole);
+    document.getElementById('next-teach').addEventListener('click', handleNextTeach);
+    document.getElementById('next-learn').addEventListener('click', handleNextLearn);
+    document.getElementById('next-availability').addEventListener('click', handleNextAvailability);
+    
+    // Back buttons
+    document.getElementById('prev-role').addEventListener('click', () => showCard('name'));
+    document.getElementById('prev-teach').addEventListener('click', () => showCard('role'));
+    document.getElementById('prev-learn').addEventListener('click', () => showCard('teach'));
+    document.getElementById('prev-availability').addEventListener('click', handlePrevAvailability);
+    
+    // Skills selection
+    setupSkillsSelection('teach-skills-container', 'skillsTeach');
+    setupSkillsSelection('learn-skills-container', 'skillsLearn');
+    
+    // Add custom skills
+    document.getElementById('add-teach-skill').addEventListener('click', handleAddTeachSkill);
+    document.getElementById('add-learn-skill').addEventListener('click', handleAddLearnSkill);
+    
+    // Enter key for skill inputs
+    document.getElementById('teach-skill-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') document.getElementById('add-teach-skill').click();
+    });
+    
+    document.getElementById('learn-skill-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') document.getElementById('add-learn-skill').click();
+    });
+    
+    // Role capability selection
+    document.querySelectorAll('.capability-option').forEach(option => {
+        option.addEventListener('click', handleCapabilitySelect);
+    });
+    
+    // Availability selection
+    document.querySelectorAll('.availability-option').forEach(option => {
+        option.addEventListener('click', handleAvailabilitySelect);
+    });
+    
+    // View profile button
+    document.getElementById('view-profile').addEventListener('click', handleViewProfile);
+    
+    // Step indicator clicks
+    steps.forEach((step) => {
+        const cardId = step.getAttribute('data-card');
+        step.addEventListener('click', () => {
+            const cardIndex = activeCards.indexOf(cardId);
+            const currentIndex = activeCards.indexOf(currentCard);
+            if (cardIndex !== -1 && cardIndex <= currentIndex) {
+                showCard(cardId);
+            }
+        });
+    });
+}
+
+// Navigation handlers
+function handleNextName() {
+    const nameInput = document.getElementById('name');
+    const name = nameInput.value.trim();
+    
+    if (!name) {
+        alert('Please enter your display name');
+        nameInput.focus();
+        return;
+    }
+    
+    formData.name = name;
+    showCard('role');
+}
+
+function handleNextRole() {
+    if (!formData.roleCapability.canTeach && !formData.roleCapability.canLearn) {
+        alert('Please select what you want to do on Skill X');
+        return;
+    }
+    
+    // Determine next card based on role
+    determineAdaptiveFlow();
+}
+
+function handleNextTeach() {
+    if (formData.skillsTeach.length === 0 && formData.roleCapability.canTeach) {
+        alert('Please select at least one skill you can teach');
+        return;
+    }
+    
+    // Determine next card
+    if (userRole === 'teach-only') {
+        showCard('availability');
+    } else if (userRole === 'teach-learn') {
+        showCard('learn');
+    } else {
+        showCard('availability');
+    }
+}
+
+function handleNextLearn() {
+    if (formData.skillsLearn.length === 0 && formData.roleCapability.canLearn) {
+        alert('Please select at least one skill you want to learn');
+        return;
+    }
+    
+    showCard('availability');
+}
+
+async function handleNextAvailability() {
+    if (!formData.availability) {
+        alert('Please select your availability');
+        return;
+    }
+    
+    try {
+        // Show saving indicator
+        const btn = document.getElementById('next-availability');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        btn.disabled = true;
+        
+        const user = auth.currentUser;
+        if (!user) {
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        // Ensure user data is set
+        formData.userId = user.uid;
+        formData.email = user.email;
+        
+        // Save to Firestore
+        await db.collection('users').doc(user.uid).set(formData, { merge: true });
+        
+        // Save to localStorage
+        localStorage.setItem('userProfileData', JSON.stringify(formData));
+        
+        console.log('Profile saved successfully');
+        showCard('completion');
+        
+    } catch (error) {
+        console.error("Error saving profile:", error);
+        alert('Error saving profile. Please try again.');
+        
+        // Restore button state
+        const btn = document.getElementById('next-availability');
+        btn.innerHTML = 'Complete Profile';
+        btn.disabled = false;
+    }
+}
+
+function handlePrevAvailability() {
+    // Go back to appropriate card based on role
+    if (userRole === 'learn-only') {
+        showCard('learn');
+    } else if (userRole === 'teach-only') {
+        showCard('teach');
+    } else if (userRole === 'teach-learn') {
+        showCard('learn');
+    } else {
+        showCard('role');
+    }
+}
+
+async function handleViewProfile() {
+    try {
+        const user = auth.currentUser;
+        if (user) {
+            // Get latest data from Firestore
+            const docRef = db.collection('users').doc(user.uid);
+            const doc = await docRef.get();
+            
+            if (doc.exists) {
+                localStorage.setItem('userProfileData', JSON.stringify(doc.data()));
+            }
+        }
+        
+        window.location.href = 'profile.html';
+    } catch (error) {
+        console.error("Error getting profile:", error);
+        alert('Error loading profile. Please try again.');
+    }
+}
+
+// Determine adaptive flow based on role selection
+function determineAdaptiveFlow() {
+    // Update active cards based on role
+    switch(userRole) {
+        case 'teach-learn':
+            activeCards = ['name', 'role', 'teach', 'learn', 'availability', 'completion'];
+            updateCardContext('Step 1 of 2', 'Step 2 of 2');
+            showCard('teach');
+            break;
+            
+        case 'teach-only':
+            activeCards = ['name', 'role', 'teach', 'availability', 'completion'];
+            formData.skillsLearn = []; // Empty array since they won't learn
+            updateCardContext('(Teach Only)', '');
+            showCard('teach');
+            break;
+            
+        case 'learn-only':
+            activeCards = ['name', 'role', 'learn', 'availability', 'completion'];
+            formData.skillsTeach = []; // Empty array since they won't teach
+            updateCardContext('', '(Learn Only)');
+            showCard('learn');
+            break;
+            
+        case 'not-interested':
+            activeCards = ['name', 'role', 'availability', 'completion'];
+            formData.skillsTeach = [];
+            formData.skillsLearn = [];
+            showCard('availability');
+            break;
+    }
+    
+    updateStepIndicators();
+}
+
+// Update card context text
+function updateCardContext(teachText, learnText) {
+    const teachContext = document.getElementById('teach-context');
+    const learnContext = document.getElementById('learn-context');
+    
+    if (teachContext) teachContext.textContent = teachText;
+    if (learnContext) learnContext.textContent = learnText;
+}
+
+// Role capability handler
+function handleCapabilitySelect(e) {
+    const option = e.currentTarget;
+    const capability = option.getAttribute('data-capability');
+    
+    // Remove selection from all options
+    document.querySelectorAll('.capability-option.selected').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    // Add selection to clicked option
+    option.classList.add('selected');
+    
+    // Store the selected role
+    userRole = capability;
+    
+    // Update form data based on selection
+    switch(capability) {
+        case 'teach-learn':
+            formData.roleCapability.canTeach = true;
+            formData.roleCapability.canLearn = true;
+            break;
+        case 'teach-only':
+            formData.roleCapability.canTeach = true;
+            formData.roleCapability.canLearn = false;
+            break;
+        case 'learn-only':
+            formData.roleCapability.canTeach = false;
+            formData.roleCapability.canLearn = true;
+            break;
+        case 'not-interested':
+            formData.roleCapability.canTeach = false;
+            formData.roleCapability.canLearn = false;
+            break;
+    }
+}
+
+// Skills handlers
+function setupSkillsSelection(containerId, formDataProperty) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.addEventListener('click', (e) => {
+        if (e.target.classList.contains('skill-tag')) {
+            const skill = e.target.getAttribute('data-skill');
+            const isSelected = e.target.classList.contains('selected');
+            
+            // Toggle selection
+            e.target.classList.toggle('selected');
+            
+            // Update form data
+            if (!isSelected) {
+                if (!formData[formDataProperty].includes(skill)) {
+                    formData[formDataProperty].push(skill);
+                }
+            } else {
+                const index = formData[formDataProperty].indexOf(skill);
+                if (index > -1) {
+                    formData[formDataProperty].splice(index, 1);
+                }
+            }
+        }
+    });
+}
+
+function handleAddTeachSkill() {
+    addCustomSkill('teach-skill-input', 'skillsTeach', 'teach-skills-container');
+}
+
+function handleAddLearnSkill() {
+    addCustomSkill('learn-skill-input', 'skillsLearn', 'learn-skills-container');
+}
+
+function addCustomSkill(inputId, formDataProperty, containerId) {
+    const input = document.getElementById(inputId);
+    const skill = input.value.trim().toLowerCase().replace(/\s+/g, '');
+    
+    if (!skill) return;
+    
+    if (formData[formDataProperty].includes(skill)) {
+        alert('This skill is already selected');
+        input.value = '';
+        return;
+    }
+    
+    // Add to UI
+    const skillTag = document.createElement('span');
+    skillTag.className = 'skill-tag selected';
+    skillTag.setAttribute('data-skill', skill);
+    skillTag.textContent = capitalizeFirstLetter(skill);
+    
+    document.getElementById(containerId).appendChild(skillTag);
+    
+    // Add to form data
+    formData[formDataProperty].push(skill);
+    
+    // Clear input
+    input.value = '';
+}
+
+// Availability handler
+function handleAvailabilitySelect(e) {
+    const option = e.currentTarget;
+    const availability = option.getAttribute('data-availability');
+    
+    // Remove selection from all options
+    document.querySelectorAll('.availability-option.selected').forEach(opt => {
+        opt.classList.remove('selected');
+    });
+    
+    // Add selection to clicked option
+    option.classList.add('selected');
+    
+    // Update form data
+    formData.availability = availability;
+}
+
+// Card navigation
+function showCard(cardId) {
+    if (!cards[cardId] || !activeCards.includes(cardId)) return;
+    
+    // Hide all cards
+    Object.values(cards).forEach(card => {
+        if (card) card.classList.remove('active');
+    });
+    
+    // Show requested card
+    cards[cardId].classList.add('active');
+    currentCard = cardId;
+    
+    // Update UI
+    updateStepIndicators();
+    updateProgressBar();
+}
+
+// Update step indicators
+function updateStepIndicators() {
+    const currentIndex = activeCards.indexOf(currentCard);
+    
+    steps.forEach((step, index) => {
+        const cardId = step.getAttribute('data-card');
+        
+        // Show/hide steps based on active cards
+        if (activeCards.includes(cardId)) {
+            step.classList.remove('hidden');
+            
+            // Set active state
+            const cardIndex = activeCards.indexOf(cardId);
+            if (cardIndex <= currentIndex) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        } else {
+            step.classList.add('hidden');
+        }
+    });
+}
+
+// Update progress bar
+function updateProgressBar() {
+    const currentIndex = activeCards.indexOf(currentCard);
+    const totalCards = activeCards.length;
+    const progressPercent = ((currentIndex + 1) / totalCards) * 100;
+    
+    if (progressBar) {
+        progressBar.style.width = `${progressPercent}%`;
+    }
+}
+
+// Utility functions
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formatSkillName(skill) {
+    return skill.split(' ').map(word => capitalizeFirstLetter(word)).join(' ');
+}
+
+function getRoleDescription(canTeach, canLearn) {
+    if (canTeach && canLearn) return 'Teacher & Learner';
+    if (canTeach && !canLearn) return 'Teacher Only';
+    if (!canTeach && canLearn) return 'Learner Only';
+    return 'Observer';
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - Onboarding Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #508cee 70% , #fafafb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #abb6d0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #7395b8;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            color: #a2aabc;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #364874;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #6780ad 0%, #7395b8 100%);
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .onboarding-form {
+            position: relative;
+        }
+
+        .card {
+            background: linear-gradient(100deg, #02174a 0%,black 50%, #384d70 100%);
+            /*background: linear-gradient(100deg, #02174a 0%, #384d70 100%);*/
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            animation: fadeIn 0.5s ease;
+            border: 1px solid #364874;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #abb6d0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .card-icon {
+            color: #7395b8;
+            font-size: 1.5rem;
+        }
+
+        .card-header p {
+            color: #a2aabc;
+            font-size: 0.95rem;
+        }
+
+        .card-content {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #abb6d0;
+            font-weight: 500;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #364874;
+            border-radius: 10px;
+            font-size: 1rem;
+            background-color: #0d1022;
+            color: #abb6d0;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6780ad;
+            background-color: #131a29;
+        }
+
+        .form-control::placeholder {
+            color: #596f9b;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            padding: 10px 18px;
+            background-color: #364874;
+            color: #abb6d0;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border: 2px solid transparent;
+        }
+
+        .skill-tag:hover {
+            background-color: #425480;
+            transform: translateY(-2px);
+        }
+
+        .skill-tag.selected {
+            background-color: #6780ad;
+            color: #fff;
+            border-color: #7395b8;
+        }
+
+        .skill-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #364874;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background-color: #0d1022;
+            color: #abb6d0;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .skill-input:focus {
+            outline: none;
+            border-color: #6780ad;
+            background-color: #131a29;
+        }
+
+        .skill-input::placeholder {
+            color: #596f9b;
+        }
+
+        .skill-add-btn {
+            padding: 12px 24px;
+            background-color: #6780ad;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .skill-add-btn:hover {
+            background-color: #7395b8;
+            transform: translateY(-2px);
+        }
+
+        .capability-options,
+        .availability-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .capability-option,
+        .availability-option {
+            background-color: #0d1022;
+            border: 2px solid #364874;
+            border-radius: 12px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+        }
+
+        .capability-option:hover,
+        .availability-option:hover {
+            border-color: #6780ad;
+            background-color: #131a29;
+            transform: translateY(-4px);
+        }
+
+        .capability-option.selected,
+        .availability-option.selected {
+            border-color: #7395b8;
+            background-color: #364874;
+        }
+
+        .capability-icon,
+        .availability-icon {
+            font-size: 2.5rem;
+            color: #6780ad;
+            margin-bottom: 12px;
+        }
+
+        .capability-option h3,
+        .availability-option h3 {
+            color: #abb6d0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .capability-option p,
+        .availability-option p {
+            color: #a2aabc;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #364874;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(103, 128, 173, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: #364874;
+            color: #abb6d0;
+        }
+
+        .btn-secondary:hover {
+            background-color: #425480;
+            transform: translateY(-2px);
+        }
+
+        .completion-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .completion-icon {
+            font-size: 5rem;
+            color: #7395b8;
+            margin-bottom: 24px;
+            animation: scaleIn 0.6s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .completion-message h2 {
+            color: #abb6d0;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .completion-message p {
+            color: #a2aabc;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .completion-message .btn-primary {
+            margin: 0 auto;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #364874;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step.active {
+            background-color: #7395b8;
+            transform: scale(1.3);
+        }
+
+        .step.completed {
+            background-color: #6780ad;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card-header h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .capability-options,
+            .availability-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .skill-input-container {
+                flex-direction: column;
+            }
+            
+            .skill-add-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header p {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 25px 15px;
+            }
+            
+            .card-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .capability-option,
+            .availability-option {
+                padding: 20px;
+                min-height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Skill X Onboarding</h1>
+            <p>Complete your profile to start connecting with others and sharing knowledge</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="onboarding-form">
+            <!-- Card 1: Name -->
+            <div class="card active" id="card-1">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-user"></i></span> What's your name?</h2>
+                    <p>This will be your display name on Sillx</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="name">Display Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your display name" maxlength="50">
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <div></div>
+                    <button class="btn btn-primary" id="next-1">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 2: Skills to Teach -->
+            <div class="card" id="card-2">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-chalkboard-teacher"></i></span> What can you teach?</h2>
+                    <p>Select skills you're confident in teaching to others</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="skillsTeach">Teaching Skills</label>
+                        <div class="skills-container" id="teach-skills-container">
+                            <span class="skill-tag" data-skill="javascript">JavaScript</span>
+                            <span class="skill-tag" data-skill="uiux">UI/UX Design</span>
+                            <span class="skill-tag" data-skill="python">Python</span>
+                            <span class="skill-tag" data-skill="react">React</span>
+                            <span class="skill-tag" data-skill="nodejs">Node.js</span>
+                            <span class="skill-tag" data-skill="datascience">Data Science</span>
+                        </div>
+                        <div class="skill-input-container">
+                            <input type="text" id="teach-skill-input" class="skill-input" placeholder="Add a custom skill">
+                            <button class="skill-add-btn" id="add-teach-skill">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-2"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-2">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 3: Skills to Learn -->
+            <div class="card" id="card-3">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-graduation-cap"></i></span> What do you want to learn?</h2>
+                    <p>Select skills you're interested in learning from others</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label for="skillsLearn">Learning Skills</label>
+                        <div class="skills-container" id="learn-skills-container">
+                            <span class="skill-tag" data-skill="react">React</span>
+                            <span class="skill-tag" data-skill="firebase">Firebase</span>
+                            <span class="skill-tag" data-skill="aws">AWS</span>
+                            <span class="skill-tag" data-skill="devops">DevOps</span>
+                            <span class="skill-tag" data-skill="machinelearning">Machine Learning</span>
+                            <span class="skill-tag" data-skill="docker">Docker</span>
+                        </div>
+                        <div class="skill-input-container">
+                            <input type="text" id="learn-skill-input" class="skill-input" placeholder="Add a custom skill">
+                            <button class="skill-add-btn" id="add-learn-skill">Add</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-3"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-3">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 4: Role Capability -->
+            <div class="card" id="card-4">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-user-tie"></i></span> What's your role capability?</h2>
+                    <p>Select what you're interested in doing on Sillx</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label>Role Preferences</label>
+                        <div class="capability-options">
+                            <div class="capability-option" data-capability="teach-learn">
+                                <div class="capability-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <h3>Teach & Learn</h3>
+                                <p>I want to both teach and learn from others</p>
+                            </div>
+                            <div class="capability-option" data-capability="teach-only">
+                                <div class="capability-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <h3>Teach Only</h3>
+                                <p>I'm only interested in teaching others</p>
+                            </div>
+                            <div class="capability-option" data-capability="learn-only">
+                                <div class="capability-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <h3>Learn Only</h3>
+                                <p>I'm only interested in learning from others</p>
+                            </div>
+                            <div class="capability-option" data-capability="not-interested">
+                                <div class="capability-icon"><i class="fas fa-user-clock"></i></div>
+                                <h3>Not Interested</h3>
+                                <p>Not interested in teaching or learning right now</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-4"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-4">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Card 5: Availability -->
+            <div class="card" id="card-5">
+                <div class="card-header">
+                    <h2><span class="card-icon"><i class="fas fa-calendar-alt"></i></span> What's your availability?</h2>
+                    <p>Let others know when you're available for knowledge exchange</p>
+                </div>
+                
+                <div class="card-content">
+                    <div class="form-group">
+                        <label>Availability Status</label>
+                        <div class="availability-options">
+                            <div class="availability-option" data-availability="available">
+                                <div class="availability-icon"><i class="fas fa-check-circle"></i></div>
+                                <h3>Available</h3>
+                                <p>Open for teaching/learning sessions</p>
+                            </div>
+                            <div class="availability-option" data-availability="busy">
+                                <div class="availability-icon"><i class="fas fa-pause-circle"></i></div>
+                                <h3>Busy</h3>
+                                <p>Limited availability at the moment</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="btn btn-secondary" id="prev-5"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn btn-primary" id="next-5">Complete Profile</button>
+                </div>
+            </div>
+
+            <!-- Card 6: Completion -->
+            <div class="card" id="card-6">
+                <div class="card-content completion-message">
+                    <div class="completion-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Profile Complete!</h2>
+                    <p>Your Sillx profile has been successfully created. You can now start connecting with others, sharing knowledge, and learning new skills.</p>
+                    <button class="btn btn-primary" id="view-profile">View Your Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step active" data-step="1"></div>
+            <div class="step" data-step="2"></div>
+            <div class="step" data-step="3"></div>
+            <div class="step" data-step="4"></div>
+            <div class="step" data-step="5"></div>
+        </div>
+    </div>
+
+    <script>
+        // Form data storage
+        const formData = {
+            userId: generateUserId(), // This would come from Firebase Auth in a real app
+            name: "",
+            email: "", // Would come from Firebase Auth
+            skillsTeach: [],
+            skillsLearn: [],
+            roleCapability: {
+                canTeach: false,
+                canLearn: false
+            },
+            availability: ""
+        };
+
+        // Generate a mock user ID (in real app, this comes from Firebase Auth)
+        function generateUserId() {
+            return "user_" + Math.random().toString(36).substring(2, 15);
+        }
+
+        // DOM Elements
+        const cards = document.querySelectorAll('.card');
+        const steps = document.querySelectorAll('.step');
+        const progressBar = document.getElementById('progress');
+        let currentCardIndex = 0;
+
+        // Card navigation functions
+        function showCard(index) {
+            // Update step indicators
+            steps.forEach((step, i) => {
+                if (i <= index) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+
+            // Update progress bar
+            const progressPercent = ((index + 1) / cards.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            // Handle card transitions
+            cards.forEach((card, i) => {
+                card.classList.remove('active', 'previous');
+                
+                if (i === index) {
+                    card.classList.add('active');
+                } else if (i < index) {
+                    card.classList.add('previous');
+                }
+            });
+            
+            currentCardIndex = index;
+        }
+
+        // Next and Previous button event listeners
+        document.getElementById('next-1').addEventListener('click', () => {
+            const nameInput = document.getElementById('name');
+            if (nameInput.value.trim() === '') {
+                alert('Please enter your display name');
+                nameInput.focus();
+                return;
+            }
+            formData.name = nameInput.value.trim();
+            showCard(1);
+        });
+
+        document.getElementById('next-2').addEventListener('click', () => {
+            if (formData.skillsTeach.length === 0) {
+                alert('Please select at least one skill you can teach');
+                return;
+            }
+            showCard(2);
+        });
+
+        document.getElementById('next-3').addEventListener('click', () => {
+            if (formData.skillsLearn.length === 0) {
+                alert('Please select at least one skill you want to learn');
+                return;
+            }
+            showCard(3);
+        });
+
+        document.getElementById('next-4').addEventListener('click', () => {
+            if (!formData.roleCapability.canTeach && !formData.roleCapability.canLearn) {
+                alert('Please select a role capability');
+                return;
+            }
+            showCard(4);
+        });
+
+        document.getElementById('next-5').addEventListener('click', () => {
+            if (!formData.availability) {
+                alert('Please select your availability');
+                return;
+            }
+            
+            // In a real app, this is where you would send data to your backend
+            console.log('Form Data to be submitted:', formData);
+            showCard(5);
+        });
+
+        // Previous buttons
+        document.getElementById('prev-2').addEventListener('click', () => showCard(0));
+        document.getElementById('prev-3').addEventListener('click', () => showCard(1));
+        document.getElementById('prev-4').addEventListener('click', () => showCard(2));
+        document.getElementById('prev-5').addEventListener('click', () => showCard(3));
+
+        // Skills selection functionality
+        function setupSkillsSelection(skillContainerId, formDataProperty) {
+            const container = document.getElementById(skillContainerId);
+            
+            container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('skill-tag')) {
+                    const skill = e.target.getAttribute('data-skill');
+                    
+                    // Toggle selection
+                    e.target.classList.toggle('selected');
+                    
+                    // Update form data
+                    if (e.target.classList.contains('selected')) {
+                        if (!formData[formDataProperty].includes(skill)) {
+                            formData[formDataProperty].push(skill);
+                        }
+                    } else {
+                        const index = formData[formDataProperty].indexOf(skill);
+                        if (index > -1) {
+                            formData[formDataProperty].splice(index, 1);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Setup skills selection for both teach and learn
+        setupSkillsSelection('teach-skills-container', 'skillsTeach');
+        setupSkillsSelection('learn-skills-container', 'skillsLearn');
+
+        // Add custom skills functionality
+        document.getElementById('add-teach-skill').addEventListener('click', () => {
+            const input = document.getElementById('teach-skill-input');
+            const skill = input.value.trim().toLowerCase().replace(/\s+/g, '');
+            
+            if (skill && !formData.skillsTeach.includes(skill)) {
+                // Add to UI
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag selected';
+                skillTag.setAttribute('data-skill', skill);
+                skillTag.textContent = skill.charAt(0).toUpperCase() + skill.slice(1);
+                
+                document.getElementById('teach-skills-container').appendChild(skillTag);
+                
+                // Add to form data
+                formData.skillsTeach.push(skill);
+                
+                // Clear input
+                input.value = '';
+            }
+        });
+
+        document.getElementById('add-learn-skill').addEventListener('click', () => {
+            const input = document.getElementById('learn-skill-input');
+            const skill = input.value.trim().toLowerCase().replace(/\s+/g, '');
+            
+            if (skill && !formData.skillsLearn.includes(skill)) {
+                // Add to UI
+                const skillTag = document.createElement('span');
+                skillTag.className = 'skill-tag selected';
+                skillTag.setAttribute('data-skill', skill);
+                skillTag.textContent = skill.charAt(0).toUpperCase() + skill.slice(1);
+                
+                document.getElementById('learn-skills-container').appendChild(skillTag);
+                
+                // Add to form data
+                formData.skillsLearn.push(skill);
+                
+                // Clear input
+                input.value = '';
+            }
+        });
+
+        // Allow Enter key to add skills
+        document.getElementById('teach-skill-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('add-teach-skill').click();
+            }
+        });
+
+        document.getElementById('learn-skill-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('add-learn-skill').click();
+            }
+        });
+
+        // Role capability selection
+        const capabilityOptions = document.querySelectorAll('.capability-option');
+        capabilityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selection from all options
+                capabilityOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selection to clicked option
+                option.classList.add('selected');
+                
+                // Update form data based on selection
+                const capability = option.getAttribute('data-capability');
+                
+                switch(capability) {
+                    case 'teach-learn':
+                        formData.roleCapability.canTeach = true;
+                        formData.roleCapability.canLearn = true;
+                        break;
+                    case 'teach-only':
+                        formData.roleCapability.canTeach = true;
+                        formData.roleCapability.canLearn = false;
+                        break;
+                    case 'learn-only':
+                        formData.roleCapability.canTeach = false;
+                        formData.roleCapability.canLearn = true;
+                        break;
+                    case 'not-interested':
+                        formData.roleCapability.canTeach = false;
+                        formData.roleCapability.canLearn = false;
+                        break;
+                }
+            });
+        });
+
+        // Availability selection
+        const availabilityOptions = document.querySelectorAll('.availability-option');
+        availabilityOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selection from all options
+                availabilityOptions.forEach(opt => opt.classList.remove('selected'));
+                
+                // Add selection to clicked option
+                option.classList.add('selected');
+                
+                // Update form data
+                formData.availability = option.getAttribute('data-availability');
+            });
+        });
+
+        // View profile button
+        document.getElementById('view-profile').addEventListener('click', () => {
+            alert(`Profile Data:\n\nName: ${formData.name}\nTeach Skills: ${formData.skillsTeach.join(', ')}\nLearn Skills: ${formData.skillsLearn.join(', ')}\nCan Teach: ${formData.roleCapability.canTeach}\nCan Learn: ${formData.roleCapability.canLearn}\nAvailability: ${formData.availability}\n\nCheck browser console for full data object.`);
+            
+            // In a real app, this would redirect to the user's profile page
+            // window.location.href = `/profile/${formData.userId}`;
+        });
+
+        // Initialize with some sample data for demo purposes
+        window.addEventListener('DOMContentLoaded', () => {
+            // Pre-select some skills for demo
+            const sampleTeachSkills = ['javascript', 'uiux'];
+            const sampleLearnSkills = ['react', 'firebase'];
+            
+            sampleTeachSkills.forEach(skill => {
+                const skillTag = document.querySelector(`#teach-skills-container .skill-tag[data-skill="${skill}"]`);
+                if (skillTag) {
+                    skillTag.classList.add('selected');
+                    formData.skillsTeach.push(skill);
+                }
+            });
+            
+            sampleLearnSkills.forEach(skill => {
+                const skillTag = document.querySelector(`#learn-skills-container .skill-tag[data-skill="${skill}"]`);
+                if (skillTag) {
+                    skillTag.classList.add('selected');
+                    formData.skillsLearn.push(skill);
+                }
+            });
+            
+            // Set default role capability (teach & learn)
+            const teachLearnOption = document.querySelector('.capability-option[data-capability="teach-learn"]');
+            teachLearnOption.classList.add('selected');
+            formData.roleCapability.canTeach = true;
+            formData.roleCapability.canLearn = true;
+            
+            // Set default availability
+            const availableOption = document.querySelector('.availability-option[data-availability="available"]');
+            availableOption.classList.add('selected');
+            formData.availability = 'available';
+            
+            // Set a sample name for demo
+            document.getElementById('name').value = "Alex Johnson";
+            formData.name = "Alex Johnson";
+        });
+    </script>
+</body>
+</html>

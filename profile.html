@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill X - User Profile</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0d1022 0%, #131a29 100%);
+    min-height: 100vh;
+    color: #abb6d0;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    border-bottom: 1px solid #364874;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #7395b8;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    color: #6780ad;
+}
+
+.logo-icon {
+    font-size: 2.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    animation: slideInRight 0.6s ease-out;
+}
+
+.nav-link {
+    color: #abb6d0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(115, 149, 184, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.nav-link:hover::before {
+    left: 100%;
+}
+
+.nav-link:hover {
+    color: #7395b8;
+    background-color: rgba(115, 149, 184, 0.1);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    color: #7395b8;
+    background-color: rgba(115, 149, 184, 0.15);
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-sidebar {
+    background: linear-gradient(135deg, #131a29 0%, #364874 100%);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #364874;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+.profile-sidebar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(103, 128, 173, 0.3);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 3rem;
+    color: white;
+    animation: rotateIn 1s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #abb6d0;
+    margin-bottom: 8px;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.profile-role {
+    display: inline-block;
+    background-color: #364874;
+    color: #7395b8;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: scaleIn 0.6s ease-out 0.4s both;
+    transition: all 0.3s ease;
+}
+
+.profile-role:hover {
+    transform: scale(1.05);
+    background-color: #425480;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background-color: #0d1022;
+    border-radius: 12px;
+    border: 1px solid #364874;
+    animation: scaleIn 0.6s ease-out both;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.5s; }
+.stat-item:nth-child(2) { animation-delay: 0.6s; }
+
+.stat-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: #6780ad;
+    box-shadow: 0 5px 20px rgba(103, 128, 173, 0.3);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #7395b8;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #a2aabc;
+}
+
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    margin-top: 10px;
+    animation: scaleIn 0.6s ease-out 0.7s both;
+    transition: all 0.3s ease;
+}
+
+.availability-badge:hover {
+    transform: scale(1.05);
+}
+
+.availability-badge.available {
+    background-color: rgba(115, 149, 184, 0.2);
+    color: #7395b8;
+}
+
+.availability-badge.busy {
+    background-color: rgba(255, 87, 87, 0.2);
+    color: #ff5757;
+}
+
+.availability-badge i {
+    /* Removed pulsing animation */
+}
+
+.profile-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.profile-card {
+    background: linear-gradient(135deg, #131a29 0%, #364874 100%);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid #364874;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.8s ease-out both;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card:nth-child(1) { animation-delay: 0.2s; }
+.profile-card:nth-child(2) { animation-delay: 0.3s; }
+.profile-card:nth-child(3) { animation-delay: 0.4s; }
+.profile-card:nth-child(4) { animation-delay: 0.5s; }
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(115, 149, 184, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.profile-card:hover::before {
+    left: 100%;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(103, 128, 173, 0.3);
+    border-color: #6780ad;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #364874;
+}
+
+.card-title-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.card-icon {
+    color: #7395b8;
+    font-size: 1.8rem;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #abb6d0;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    padding: 10px 18px;
+    background-color: #364874;
+    color: #abb6d0;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    animation: scaleIn 0.4s ease-out both;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-tag:nth-child(1) { animation-delay: 0.1s; }
+.skill-tag:nth-child(2) { animation-delay: 0.15s; }
+.skill-tag:nth-child(3) { animation-delay: 0.2s; }
+.skill-tag:nth-child(4) { animation-delay: 0.25s; }
+.skill-tag:nth-child(5) { animation-delay: 0.3s; }
+.skill-tag:nth-child(6) { animation-delay: 0.35s; }
+
+.skill-tag:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-color: #425480;
+    box-shadow: 0 5px 15px rgba(103, 128, 173, 0.3);
+}
+
+.skill-tag.highlight {
+    background-color: #6780ad;
+    color: #fff;
+    border-color: #7395b8;
+}
+
+.capability-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.capability-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: #0d1022;
+    border-radius: 12px;
+    border: 1px solid #364874;
+    animation: fadeIn 0.6s ease-out both;
+    transition: all 0.3s ease;
+}
+
+.capability-item:nth-child(1) { animation-delay: 0.2s; }
+.capability-item:nth-child(2) { animation-delay: 0.3s; }
+
+.capability-item:hover {
+    transform: translateX(10px);
+    border-color: #6780ad;
+    box-shadow: 0 5px 20px rgba(103, 128, 173, 0.2);
+}
+
+.capability-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.capability-item:hover .capability-icon {
+    transform: rotate(360deg) scale(1.1);
+}
+
+.capability-text {
+    flex: 1;
+}
+
+.capability-text h4 {
+    color: #abb6d0;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.capability-text p {
+    color: #a2aabc;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.status-badge.active {
+    background-color: rgba(115, 149, 184, 0.2);
+    color: #7395b8;
+}
+
+.status-badge.inactive {
+    background-color: rgba(255, 87, 87, 0.2);
+    color: #ff5757;
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #364874;
+    animation: fadeIn 0.5s ease-out both;
+    transition: all 0.3s ease;
+}
+
+.detail-item:nth-child(1) { animation-delay: 0.1s; }
+.detail-item:nth-child(2) { animation-delay: 0.2s; }
+.detail-item:nth-child(3) { animation-delay: 0.3s; }
+.detail-item:nth-child(4) { animation-delay: 0.4s; }
+
+.detail-item:hover {
+    padding-left: 10px;
+    border-color: #6780ad;
+}
+
+.detail-label {
+    color: #a2aabc;
+    font-weight: 500;
+}
+
+.detail-value {
+    color: #abb6d0;
+    font-weight: 500;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px;
+    color: #a2aabc;
+    animation: fadeIn 1s ease-out;
+}
+
+.no-data i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #364874;
+    animation: pulse 2s infinite;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #6780ad 0%, #7395b8 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.back-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(103, 128, 173, 0.5);
+}
+
+.edit-btn {
+    background: linear-gradient(135deg, #4a6fa5 0%, #5a80b0 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.edit-btn:hover::before {
+    width: 200px;
+    height: 200px;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #5a80b0 0%, #6a90c0 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(90, 128, 176, 0.4);
+}
+
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+.error-message {
+    text-align: center;
+    padding: 40px;
+    color: #ff5757;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.error-message i {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+/* Skill Input Animations */
+.skill-input {
+    transition: all 0.3s ease;
+}
+
+.skill-input:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(103, 128, 173, 0.3);
+}
+
+.skill-add-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-add-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.skill-add-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Core Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .profile-sidebar {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#" class="logo">
+                <i class="fas fa-brain logo-icon"></i>
+                Skill X
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active">Profile</a>
+                <a href="landingpage.html" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Messages</a>
+                <a href="#" class="nav-link">Settings</a>
+            </div>
+
+            <div id="user-info" style="display: none;">
+                <!-- User info will be inserted here -->
+            </div>
+
+        </div>
+
+        <div id="profile-content">
+            <!-- Profile content will be loaded dynamically -->
+        </div>
+
+        <div id="no-data" class="no-data" style="display: none;">
+            <i class="fas fa-user-slash"></i>
+            <h2>No Profile Data Found</h2>
+            <p>Complete the onboarding process to create your profile.</p>
+            <a href="onboarding.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Go to Onboarding
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Your Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDa5n4kouD8j8SkZjFKbOaLIR1P75qt_0Q",
+    authDomain: "skill-x-e9103.firebaseapp.com",
+    projectId: "skill-x-e9103",
+    storageBucket: "skill-x-e9103.firebasestorage.app",
+    messagingSenderId: "168346915694",
+    appId: "1:168346915694:web:04d02b703f6af77cd0277f",
+    measurementId: "G-PYNH68ZKVS",
+    databaseURL: "https://skill-x-e9103-default-rtdb.firebaseio.com/"
+};
+
+// Initialize Firebase
+let auth, db;
+try {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    auth = firebase.auth();
+    db = firebase.firestore();
+} catch (error) {
+    console.error("Firebase initialization error:", error);
+    showError("Failed to initialize app. Please refresh the page.");
+}
+
+// Global variables
+let profileData = null;
+let currentUserId = null;
+let isProfileLoaded = false;
+
+// Show loading indicator
+function showLoading() {
+    document.getElementById('profile-content').innerHTML = `
+        <div style="text-align: center; padding: 60px; color: #a2aabc;">
+            <i class="fas fa-spinner fa-spin fa-3x" style="margin-bottom: 20px;"></i>
+            <h2>Loading your profile...</h2>
+            <p>Please wait while we fetch your data</p>
+        </div>
+    `;
+    document.getElementById('profile-content').style.display = 'block';
+    document.getElementById('no-data').style.display = 'none';
+}
+
+// Show error message
+function showError(message) {
+    document.getElementById('profile-content').innerHTML = `
+        <div style="text-align: center; padding: 60px; color: #ff5757;">
+            <i class="fas fa-exclamation-triangle fa-3x" style="margin-bottom: 20px;"></i>
+            <h2>Oops! Something went wrong</h2>
+            <p>${message}</p>
+            <button onclick="window.location.reload()" class="back-btn" style="margin-top: 20px;">
+                <i class="fas fa-redo"></i> Try Again
+            </button>
+        </div>
+    `;
+    document.getElementById('profile-content').style.display = 'block';
+    document.getElementById('no-data').style.display = 'none';
+}
+
+// Cache profile data in memory
+const profileCache = {
+    data: null,
+    timestamp: null,
+    isValid: function() {
+        if (!this.data || !this.timestamp) return false;
+        const now = new Date().getTime();
+        return (now - this.timestamp) < 5 * 60 * 1000; // 5 minutes cache
+    }
+};
+
+// Main initialization - optimized loading
+document.addEventListener('DOMContentLoaded', async () => {
+    console.time('ProfileLoadTime');
+    
+    // Show loading immediately
+    showLoading();
+    
+    try {
+        // Wait for Firebase auth to be ready
+        await new Promise(resolve => {
+            const unsubscribe = auth.onAuthStateChanged(user => {
+                unsubscribe(); // Unsubscribe immediately
+                resolve(user);
+            });
+        });
+        
+        const user = auth.currentUser;
+        
+        if (!user) {
+            showNoData();
+            return;
+        }
+        
+        currentUserId = user.uid;
+        
+        // Try cache first
+        if (profileCache.isValid() && profileCache.data.userId === currentUserId) {
+            console.log('Using cached profile data');
+            profileData = profileCache.data;
+        } else {
+            // Load from Firestore with timeout
+            profileData = await loadProfileDataWithTimeout(user.uid, 5000); // 5 second timeout
+            
+            if (profileData) {
+                // Update cache
+                profileCache.data = profileData;
+                profileCache.timestamp = new Date().getTime();
+            }
+        }
+        
+        if (profileData) {
+            profileData.email = user.email; // Always use fresh email
+            renderProfile(profileData);
+            updateUserInfoInHeader(user);
+            isProfileLoaded = true;
+        } else {
+            showNoData();
+        }
+        
+    } catch (error) {
+        console.error("Profile loading error:", error);
+        showError("Failed to load profile. Please check your connection.");
+    } finally {
+        console.timeEnd('ProfileLoadTime');
+    }
+});
+
+// Optimized profile loading with timeout
+async function loadProfileDataWithTimeout(userId, timeoutMs) {
+    return new Promise(async (resolve, reject) => {
+        const timeout = setTimeout(() => {
+            console.warn('Firestore timeout - trying localStorage');
+            const localData = JSON.parse(localStorage.getItem('userProfileData'));
+            resolve(localData || null);
+        }, timeoutMs);
+        
+        try {
+            const docRef = db.collection('users').doc(userId);
+            const doc = await docRef.get();
+            
+            clearTimeout(timeout);
+            
+            if (doc.exists) {
+                resolve(doc.data());
+            } else {
+                // Fallback to localStorage
+                const localData = JSON.parse(localStorage.getItem('userProfileData'));
+                resolve(localData || null);
+            }
+        } catch (error) {
+            clearTimeout(timeout);
+            console.error("Firestore error:", error);
+            // Fallback to localStorage
+            const localData = JSON.parse(localStorage.getItem('userProfileData'));
+            resolve(localData || null);
+        }
+    });
+}
+
+// Optimized render function
+function renderProfile(data) {
+    if (!data) {
+        showNoData();
+        return;
+    }
+    
+    const user = auth.currentUser;
+    const userEmail = user ? user.email : (data.email || 'user@example.com');
+    
+    // Use document fragments for better performance
+    const fragment = document.createDocumentFragment();
+    const container = document.createElement('div');
+    
+    container.innerHTML = getProfileHTML(data, userEmail);
+    fragment.appendChild(container);
+    
+    document.getElementById('profile-content').innerHTML = '';
+    document.getElementById('profile-content').appendChild(fragment);
+    document.getElementById('profile-content').style.display = 'block';
+    document.getElementById('no-data').style.display = 'none';
+    
+    // Attach event listeners after rendering
+    setTimeout(() => attachEditEventListeners(), 0);
+}
+
+// Separate HTML generation for better performance
+function getProfileHTML(data, userEmail) {
+    return `
+        <div class="profile-container">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h1 class="profile-name">${escapeHTML(data.name) || userEmail.split('@')[0]}</h1>
+                    <div class="profile-role">${escapeHTML(getRoleDescription(data.roleCapability.canTeach, data.roleCapability.canLearn))}</div>
+                    
+                    <div class="availability-badge ${data.availability === 'available' ? 'available' : 'busy'}">
+                        <i class="fas fa-circle"></i>
+                        ${data.availability === 'available' ? 'Available' : 'Busy'}
+                    </div>
+                </div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">${data.skillsTeach ? data.skillsTeach.length : 0}</div>
+                        <div class="stat-label">Skills to Teach</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">${data.skillsLearn ? data.skillsLearn.length : 0}</div>
+                        <div class="stat-label">Skills to Learn</div>
+                    </div>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Email Address</span>
+                        <span class="detail-value" style="font-size: 0.9em;">${escapeHTML(userEmail)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Member Since</span>
+                        <span class="detail-value">${data.joinDate || '2024'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">User ID</span>
+                        <span class="detail-value" style="font-size: 0.8em;">${data.userId ? data.userId.substring(0, 8) + '...' : 'Not set'}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="profile-content">
+                ${getSkillsCardHTML(data, 'teach')}
+                ${getSkillsCardHTML(data, 'learn')}
+                ${getRoleCapabilityCardHTML(data)}
+                ${getProfileInfoCardHTML(data, userEmail)}
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="back-btn" onclick="goToFullEdit()">
+                <i class="fas fa-edit"></i> Edit Full Profile
+            </button>
+        </div>
+    `;
+}
+
+// Helper functions for modular HTML generation
+function getSkillsCardHTML(data, type) {
+    const isTeach = type === 'teach';
+    const skills = isTeach ? data.skillsTeach : data.skillsLearn;
+    const title = isTeach ? 'Skills I Can Teach' : 'Skills I Want to Learn';
+    const icon = isTeach ? 'fa-chalkboard-teacher' : 'fa-graduation-cap';
+    const cardId = isTeach ? 'teach-skills-display' : 'learn-skills-display';
+    
+    return `
+        <div class="profile-card">
+            <div class="card-header">
+                <div class="card-title-container">
+                    <i class="fas ${icon} card-icon"></i>
+                    <h2 class="card-title">${title}</h2>
+                </div>
+                <button class="edit-btn" data-edit-type="skills" data-skill-type="${type}">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
+            <div class="skills-container" id="${cardId}">
+                ${skills && skills.length > 0 
+                    ? skills.map(skill => 
+                        `<span class="skill-tag ${isTeach ? 'highlight' : ''}">${escapeHTML(formatSkillName(skill))}</span>`
+                      ).join('')
+                    : '<p style="color: #a2aabc;">No ' + (isTeach ? 'teaching' : 'learning') + ' skills selected yet.</p>'
+                }
+            </div>
+        </div>
+    `;
+}
+
+function getRoleCapabilityCardHTML(data) {
+    return `
+        <div class="profile-card">
+            <div class="card-header">
+                <div class="card-title-container">
+                    <i class="fas fa-user-tie card-icon"></i>
+                    <h2 class="card-title">Role Capabilities</h2>
+                </div>
+                <button class="edit-btn" data-edit-type="role">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
+            <div class="capability-info">
+                <div class="capability-item">
+                    <div class="capability-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="capability-text">
+                        <h4>Teaching</h4>
+                        <p>${data.roleCapability.canTeach ? 'Open to teaching others' : 'Not interested in teaching'}</p>
+                    </div>
+                    <span class="status-badge ${data.roleCapability.canTeach ? 'active' : 'inactive'}">
+                        ${data.roleCapability.canTeach ? 'Active' : 'Inactive'}
+                    </span>
+                </div>
+                
+                <div class="capability-item">
+                    <div class="capability-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="capability-text">
+                        <h4>Learning</h4>
+                        <p>${data.roleCapability.canLearn ? 'Open to learning from others' : 'Not interested in learning'}</p>
+                    </div>
+                    <span class="status-badge ${data.roleCapability.canLearn ? 'active' : 'inactive'}">
+                        ${data.roleCapability.canLearn ? 'Active' : 'Inactive'}
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function getProfileInfoCardHTML(data, userEmail) {
+    return `
+        <div class="profile-card">
+            <div class="card-header">
+                <div class="card-title-container">
+                    <i class="fas fa-info-circle card-icon"></i>
+                    <h2 class="card-title">Profile Information</h2>
+                </div>
+                <button class="edit-btn" data-edit-type="basic">
+                    <i class="fas fa-edit"></i> Edit
+                </button>
+            </div>
+            <div class="profile-details">
+                <div class="detail-item">
+                    <span class="detail-label">Display Name</span>
+                    <span class="detail-value" id="display-name-value">${escapeHTML(data.name) || 'Not set'}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Account Email</span>
+                    <span class="detail-value" style="font-size: 0.9em;">${escapeHTML(userEmail)}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Availability</span>
+                    <span class="detail-value">
+                        <span class="status-badge ${data.availability === 'available' ? 'active' : 'inactive'}" id="availability-badge">
+                            ${data.availability === 'available' ? 'Available for Sessions' : 'Currently Busy'}
+                        </span>
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Profile Status</span>
+                    <span class="detail-value">
+                        <span class="status-badge ${data.name ? 'active' : 'inactive'}">
+                            ${data.name ? 'Complete' : 'Incomplete'}
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Attach event listeners after rendering
+function attachEditEventListeners() {
+    // Edit buttons
+    document.querySelectorAll('.edit-btn[data-edit-type="skills"]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const type = this.getAttribute('data-skill-type');
+            editSkills(type);
+        });
+    });
+    
+    document.querySelectorAll('.edit-btn[data-edit-type="role"]').forEach(btn => {
+        btn.addEventListener('click', editRoleCapability);
+    });
+    
+    document.querySelectorAll('.edit-btn[data-edit-type="basic"]').forEach(btn => {
+        btn.addEventListener('click', editBasicInfo);
+    });
+    
+    // Navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (this.textContent !== 'Profile') {
+                alert(`${this.textContent} section would load here in a full application.`);
+            }
+        });
+    });
+}
+
+// Utility functions
+function escapeHTML(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function formatSkillName(skill) {
+    return skill.split(' ').map(word => capitalizeFirstLetter(word)).join(' ');
+}
+
+function getRoleDescription(canTeach, canLearn) {
+    if (canTeach && canLearn) return 'Teacher & Learner';
+    if (canTeach && !canLearn) return 'Teacher Only';
+    if (!canTeach && canLearn) return 'Learner Only';
+    return 'Observer';
+}
+
+function updateUserInfoInHeader(user) {
+    const userInfoContainer = document.getElementById('user-info');
+    if (!userInfoContainer) return;
+    
+    userInfoContainer.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="color: #7395b8;">
+                <i class="fas fa-user-circle"></i> ${escapeHTML(user.email)}
+            </span>
+            <button id="logout-btn" style="background: none; border: 1px solid #364874; color: #abb6d0; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-family: 'Poppins', sans-serif;">
+                Logout
+            </button>
+        </div>
+    `;
+    userInfoContainer.style.display = 'block';
+    
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        auth.signOut().then(() => {
+            localStorage.removeItem('userProfileData');
+            window.location.href = 'login.html';
+        });
+    });
+}
+
+function showNoData() {
+    document.getElementById('profile-content').style.display = 'none';
+    document.getElementById('no-data').style.display = 'block';
+}
+
+// Edit Functions
+async function editSkills(type) {
+    if (!isProfileLoaded) return;
+    
+    const skillType = type === 'teach' ? 'skillsTeach' : 'skillsLearn';
+    const containerId = type === 'teach' ? 'teach-skills-display' : 'learn-skills-display';
+    const container = document.getElementById(containerId);
+    
+    if (!container) return;
+    
+    const currentSkills = [...(profileData[skillType] || [])];
+    const editSessionId = Date.now(); // Unique ID for this edit session
+    
+    container.innerHTML = `
+        <div class="skill-edit-container">
+            <div style="margin-bottom: 15px;">
+                <h3 style="color: #abb6d0; margin-bottom: 10px;">Edit ${type === 'teach' ? 'Teaching' : 'Learning'} Skills</h3>
+                <div class="skills-container" id="edit-skills-tags-${editSessionId}">
+                    ${currentSkills.map(skill => `
+                        <span class="skill-tag highlight" data-skill="${skill}">
+                            ${formatSkillName(skill)}
+                            <i class="fas fa-times remove-skill" style="margin-left: 5px; cursor: pointer;"></i>
+                        </span>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <div class="skill-input-container" style="margin-bottom: 20px;">
+                <input type="text" id="new-skill-input-${editSessionId}" class="skill-input" placeholder="Add a new skill">
+                <button class="skill-add-btn" id="add-new-skill-${editSessionId}">Add</button>
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn btn-secondary" onclick="cancelSkillsEdit('${containerId}')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveSkillsEdit('${skillType}', '${containerId}', ${editSessionId})">Save Changes</button>
+            </div>
+        </div>
+    `;
+    
+    // Setup event listeners for this edit session
+    setTimeout(() => setupSkillsEditListeners(editSessionId, currentSkills), 0);
+}
+
+function setupSkillsEditListeners(sessionId, currentSkills) {
+    const addBtn = document.getElementById(`add-new-skill-${sessionId}`);
+    const input = document.getElementById(`new-skill-input-${sessionId}`);
+    const tagsContainer = document.getElementById(`edit-skills-tags-${sessionId}`);
+    
+    if (!addBtn || !input || !tagsContainer) return;
+    
+    addBtn.addEventListener('click', () => {
+        const skill = input.value.trim().toLowerCase().replace(/\s+/g, '');
+        
+        if (skill && !currentSkills.includes(skill)) {
+            const skillTag = document.createElement('span');
+            skillTag.className = 'skill-tag highlight';
+            skillTag.setAttribute('data-skill', skill);
+            skillTag.innerHTML = `${formatSkillName(skill)} <i class="fas fa-times remove-skill" style="margin-left: 5px; cursor: pointer;"></i>`;
+            
+            tagsContainer.appendChild(skillTag);
+            currentSkills.push(skill);
+            input.value = '';
+            
+            skillTag.querySelector('.remove-skill').addEventListener('click', function() {
+                const skillToRemove = skillTag.getAttribute('data-skill');
+                const index = currentSkills.indexOf(skillToRemove);
+                if (index > -1) currentSkills.splice(index, 1);
+                skillTag.remove();
+            });
+        } else if (skill && currentSkills.includes(skill)) {
+            alert('This skill is already added');
+            input.value = '';
+        }
+    });
+    
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addBtn.click();
+    });
+    
+    tagsContainer.querySelectorAll('.remove-skill').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const skillTag = this.parentElement;
+            const skillToRemove = skillTag.getAttribute('data-skill');
+            const index = currentSkills.indexOf(skillToRemove);
+            if (index > -1) currentSkills.splice(index, 1);
+            skillTag.remove();
+        });
+    });
+}
+
+function cancelSkillsEdit(containerId) {
+    renderProfile(profileData);
+}
+
+async function saveSkillsEdit(skillType, containerId, sessionId) {
+    try {
+        const tagsContainer = document.getElementById(`edit-skills-tags-${sessionId}`);
+        if (!tagsContainer) return;
+        
+        const updatedSkills = Array.from(tagsContainer.querySelectorAll('.skill-tag'))
+            .map(tag => tag.getAttribute('data-skill'))
+            .filter(skill => skill);
+        
+        profileData[skillType] = updatedSkills;
+        
+        await db.collection('users').doc(currentUserId).update({
+            [skillType]: updatedSkills
+        });
+        
+        localStorage.setItem('userProfileData', JSON.stringify(profileData));
+        profileCache.data = profileData;
+        profileCache.timestamp = new Date().getTime();
+        
+        alert('Skills updated successfully!');
+        renderProfile(profileData);
+        
+    } catch (error) {
+        console.error("Error updating skills:", error);
+        alert('Error updating skills. Please try again.');
+    }
+}
+
+async function editRoleCapability() {
+    if (!isProfileLoaded) return;
+    
+    const currentTeach = profileData.roleCapability.canTeach;
+    const currentLearn = profileData.roleCapability.canLearn;
+    
+    const currentSelection = currentTeach && currentLearn ? '1' :
+                           currentTeach && !currentLearn ? '2' :
+                           !currentTeach && currentLearn ? '3' : '4';
+    
+    const newCapability = prompt(
+        `Select your role capability:\n\n1. Teach & Learn (both)\n2. Teach Only\n3. Learn Only\n4. Not Interested\n\nCurrent: ${getRoleDescription(currentTeach, currentLearn)}\nEnter 1, 2, 3, or 4:`,
+        currentSelection
+    );
+    
+    if (!newCapability) return;
+    
+    let canTeach = false, canLearn = false;
+    switch(newCapability) {
+        case '1': canTeach = true; canLearn = true; break;
+        case '2': canTeach = true; canLearn = false; break;
+        case '3': canTeach = false; canLearn = true; break;
+        case '4': canTeach = false; canLearn = false; break;
+        default: alert('Invalid selection.'); return;
+    }
+    
+    profileData.roleCapability = { canTeach, canLearn };
+    
+    try {
+        await db.collection('users').doc(currentUserId).update({
+            roleCapability: profileData.roleCapability
+        });
+        
+        localStorage.setItem('userProfileData', JSON.stringify(profileData));
+        profileCache.data = profileData;
+        profileCache.timestamp = new Date().getTime();
+        
+        alert('Role capability updated!');
+        renderProfile(profileData);
+    } catch (error) {
+        console.error("Error updating role:", error);
+        alert('Error updating role capability.');
+    }
+}
+
+async function editBasicInfo() {
+    if (!isProfileLoaded) return;
+    
+    const newName = prompt('Enter your new display name:', profileData.name || '');
+    if (newName === null) return;
+    
+    const currentAvailability = profileData.availability === 'available' ? '1' : '2';
+    const newAvailability = prompt(
+        `Select your availability:\n\n1. Available\n2. Busy\n\nCurrent: ${profileData.availability === 'available' ? 'Available' : 'Busy'}\nEnter 1 or 2:`,
+        currentAvailability
+    );
+    
+    if (!newAvailability) return;
+    
+    const availability = newAvailability === '1' ? 'available' : 'busy';
+    
+    profileData.name = newName;
+    profileData.availability = availability;
+    
+    try {
+        await db.collection('users').doc(currentUserId).update({
+            name: newName,
+            availability: availability
+        });
+        
+        localStorage.setItem('userProfileData', JSON.stringify(profileData));
+        profileCache.data = profileData;
+        profileCache.timestamp = new Date().getTime();
+        
+        alert('Profile information updated!');
+        renderProfile(profileData);
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        alert('Error updating profile information.');
+    }
+}
+
+function goToFullEdit() {
+    localStorage.setItem('userProfileData', JSON.stringify(profileData));
+    window.location.href = 'onboarding.html?edit=true';
+}
+
+// Make functions globally available for onclick handlers
+window.editSkills = editSkills;
+window.editRoleCapability = editRoleCapability;
+window.editBasicInfo = editBasicInfo;
+window.goToFullEdit = goToFullEdit;
+window.cancelSkillsEdit = cancelSkillsEdit;
+window.saveSkillsEdit = saveSkillsEdit;
+    </script>
+</body>
+</html>
